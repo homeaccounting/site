@@ -51,7 +51,7 @@ test('security strip: summary + link to /security', () => {
   has('index.html', 'encrypted at rest', 'href="/security"');
 });
 
-test('security page: pillars + disclosure + links resolve to #2 artifacts', () => {
+test('security page: pillars + disclosure + links resolve to security artifacts', () => {
   has(
     'security/index.html',
     'encrypted at rest',

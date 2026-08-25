@@ -1,10 +1,10 @@
 export type LaunchMode = 'cloud' | 'self-host-first';
 
-// The one open launch decision (launch-plan §11). Flip to 'self-host-first'
-// to swap the cloud CTA to a waitlist. Default: cloud-at-launch.
+// Open launch decision: cloud-at-launch vs self-host-first. Flip to
+// 'self-host-first' to swap the cloud CTA to a waitlist. Default: cloud-at-launch.
 export const LAUNCH_MODE: LaunchMode = 'cloud';
 
-// Stubbed until tracker#13 (public read-only demo) lands. Allow-listed in lychee.toml.
+// Stubbed until the public read-only demo is live. Allow-listed in lychee.toml.
 export const DEMO_URL = 'https://demo.homeaccounting.com';
 
 export const APP_URL = 'https://homeaccounting.com/app';
@@ -13,14 +13,14 @@ export const GITHUB = {
   backend: 'https://github.com/homeaccounting/backend',
   docker: 'https://github.com/homeaccounting/docker',
 };
-// Docs live in the README/docs of the code repos (tracker#18).
+// Docs live in the README/docs of the code repos.
 export const DOCS_URL = `${GITHUB.backend}#readme`;
-export const SECURITY_MD_URL = `${GITHUB.backend}/blob/master/SECURITY.md`; // resolves when #2 lands
+export const SECURITY_MD_URL = `${GITHUB.backend}/blob/master/SECURITY.md`; // resolves once SECURITY.md is published
 
 // GoatCounter count endpoint for the homeaccounting site (create the site before go-live).
 export const GOATCOUNTER = 'https://homeaccounting.goatcounter.com/count';
 
-// Placeholder social preview image; real asset lands with tracker#62.
+// Placeholder social preview image; real asset lands later.
 export const OG_IMAGE = '/hero-placeholder.svg';
 
 export function cloudCta(mode: LaunchMode = LAUNCH_MODE): {
@@ -60,7 +60,7 @@ export const FOOTER: {
       { label: 'Self-host vs Cloud', href: `/#${SECTION.hosting}` },
       { label: 'Security', href: SECURITY_PAGE_URL },
     ],
-    notes: [{ label: 'Comparisons (soon)', muted: true }], // tracker#19
+    notes: [{ label: 'Comparisons (soon)', muted: true }],
   },
   {
     heading: 'Code',
@@ -74,7 +74,7 @@ export const FOOTER: {
   {
     heading: 'Community & legal',
     links: [],
-    // Community lives on homeaccounting.org (future); Privacy/ToS reserved for tracker#10.
+    // Community lives on homeaccounting.org (future); Privacy/ToS coming soon.
     notes: [
       { label: 'Community (.org, soon)', muted: true },
       { label: 'Privacy / ToS (soon)', muted: true },
