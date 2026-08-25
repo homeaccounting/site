@@ -46,3 +46,7 @@ test('hosting: both columns, routing, parity row', () => {
     'you can move between them',
   );
 });
+
+test('security strip: summary + link to /security', () => {
+  has('index.html', 'encrypted at rest', 'href="/security"');
+});
