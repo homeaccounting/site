@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 
 const html = (p) =>
   readFileSync(new URL(`../dist/${p}`, import.meta.url), 'utf8');
@@ -59,4 +59,9 @@ test('security page: pillars + disclosure + links resolve to #2 artifacts', () =
     'SECURITY.md',
     'Run it yourself',
   );
+});
+
+test('deploy artifacts: CNAME + sitemap present in dist', () => {
+  assert.equal(html('CNAME').trim(), 'www.homeaccounting.com');
+  assert.ok(existsSync(new URL('../dist/sitemap-index.xml', import.meta.url)));
 });
