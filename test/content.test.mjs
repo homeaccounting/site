@@ -50,3 +50,13 @@ test('hosting: both columns, routing, parity row', () => {
 test('security strip: summary + link to /security', () => {
   has('index.html', 'encrypted at rest', 'href="/security"');
 });
+
+test('security page: pillars + disclosure + links resolve to #2 artifacts', () => {
+  has(
+    'security/index.html',
+    'encrypted at rest',
+    'Responsible disclosure',
+    'SECURITY.md',
+    'Run it yourself',
+  );
+});
