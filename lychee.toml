@@ -1,0 +1,6 @@
+# Intentionally-stubbed links that resolve as sibling launch issues land.
+exclude = [
+  "https://demo.homeaccounting.com",          # tracker#13
+  "https://github.com/homeaccounting/.*",     # web/backend private until go-public
+  "https://homeaccounting.goatcounter.com/.*",
+]

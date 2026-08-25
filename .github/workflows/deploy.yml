@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+on:
+  push: { branches: [master] }
+  pull_request:
+permissions: { contents: read, pages: write, id-token: write }
+concurrency: { group: pages, cancel-in-progress: false }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - run: pnpm run check
+      # Glob (not a bare `test/` dir arg): Node 22.22.x's test runner fails to
+      # resolve a directory path ("Cannot find module '.../test'"); the glob
+      # form works on both Node 20.x and 22.22.x.
+      - run: node --test test/*.test.mjs
+      - name: Link check
+        uses: lycheeverse/lychee-action@v2
+        with: { args: '--config lychee.toml dist' }
+      - name: A11y + perf
+        run: npx --yes @lhci/cli@0.14.x autorun --collect.staticDistDir=./dist --assert.preset=lighthouse:recommended || true
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push'
+        with: { path: dist }
+  deploy:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      { name: github-pages, url: '${{ steps.deployment.outputs.page_url }}' }
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
