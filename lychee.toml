@@ -3,4 +3,5 @@ exclude = [
   "https://demo.homeaccounting.com",          # tracker#13
   "https://github.com/homeaccounting/.*",     # web/backend private until go-public
   "https://homeaccounting.goatcounter.com/.*",
+  "https://www.homeaccounting.com.*",         # self-references (canonical/sitemap/robots) — live after the DNS cutover (fire-console tasks, tracker#17); revisit post-launch
 ]
