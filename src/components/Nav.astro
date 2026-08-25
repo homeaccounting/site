@@ -1,5 +1,5 @@
 ---
-import { cloudCta, GITHUB, DOCS_URL } from '../config';
+import { cloudCta, NAV_LINKS } from '../config';
 const cta = cloudCta();
 ---
 
@@ -9,11 +9,7 @@ const cta = cloudCta();
     <div
       class="hidden md:flex items-center gap-6 text-sm text-muted-foreground"
     >
-      <a href="/#capture">Features</a>
-      <a href="/#hosting">Self-host vs Cloud</a>
-      <a href="/security">Security</a>
-      <a href={DOCS_URL}>Docs</a>
-      <a href={GITHUB.web}>GitHub</a>
+      {NAV_LINKS.map((l) => <a href={l.href}>{l.label}</a>)}
     </div>
     <a
       href={cta.href}

@@ -17,7 +17,7 @@ export const GITHUB = {
 export const DOCS_URL = `${GITHUB.backend}#readme`;
 export const SECURITY_MD_URL = `${GITHUB.backend}/blob/master/SECURITY.md`; // resolves when #2 lands
 
-// GoatCounter analytics site code (create the site before go-live).
+// GoatCounter count endpoint for the homeaccounting site (create the site before go-live).
 export const GOATCOUNTER = 'https://homeaccounting.goatcounter.com/count';
 
 export function cloudCta(mode: LaunchMode = LAUNCH_MODE): {
@@ -28,3 +28,51 @@ export function cloudCta(mode: LaunchMode = LAUNCH_MODE): {
     ? { label: 'Sign up free', href: APP_URL }
     : { label: 'Join the waitlist', href: '#waitlist' };
 }
+
+// On-page anchor IDs — one source of truth so sections and nav/footer agree.
+export const SECTION = { capture: 'capture', hosting: 'hosting' } as const;
+
+// Primary nav links (rendered by Nav.astro).
+export const NAV_LINKS: { label: string; href: string }[] = [
+  { label: 'Features', href: `/#${SECTION.capture}` },
+  { label: 'Self-host vs Cloud', href: `/#${SECTION.hosting}` },
+  { label: 'Security', href: '/security' },
+  { label: 'Docs', href: DOCS_URL },
+  { label: 'GitHub', href: GITHUB.web },
+];
+
+// Footer columns (rendered by Footer.astro). `notes` are non-link entries;
+// `muted` ones are dimmed placeholders reserved for future launch issues.
+export const FOOTER: {
+  heading: string;
+  links: { label: string; href: string }[];
+  notes: { label: string; muted: boolean }[];
+}[] = [
+  {
+    heading: 'Product',
+    links: [
+      { label: 'Self-host vs Cloud', href: `/#${SECTION.hosting}` },
+      { label: 'Security', href: '/security' },
+    ],
+    notes: [{ label: 'Comparisons (soon)', muted: true }], // tracker#19
+  },
+  {
+    heading: 'Code',
+    links: [
+      { label: 'web', href: GITHUB.web },
+      { label: 'backend', href: GITHUB.backend },
+      { label: 'Docs', href: DOCS_URL },
+    ],
+    notes: [],
+  },
+  {
+    heading: 'Community & legal',
+    links: [],
+    // Community lives on homeaccounting.org (future); Privacy/ToS reserved for tracker#10.
+    notes: [
+      { label: 'Community (.org, soon)', muted: true },
+      { label: 'Privacy / ToS (soon)', muted: true },
+      { label: 'AGPL-3.0', muted: false },
+    ],
+  },
+];
