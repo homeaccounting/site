@@ -24,3 +24,14 @@ test('hero: headline + two pillars + both CTAs + demo stub', () => {
     'demo.homeaccounting.com', // DEMO_URL stub
   );
 });
+
+test('capture: three methods, monobank + Telegram keywords, anchor', () => {
+  has(
+    'index.html',
+    'id="capture"',
+    'Bank import',
+    'monobank',
+    'Free-text prompt',
+    'Telegram',
+  );
+});

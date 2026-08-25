@@ -1,0 +1,41 @@
+---
+import { SECTION } from '../config';
+
+const methods = [
+  {
+    h: 'Bank import',
+    kw: 'It logs itself',
+    p: 'Direct <strong>monobank</strong> sync + file import. Categorized on arrival — you just confirm.',
+  },
+  {
+    h: 'Free-text prompt',
+    kw: 'Type a sentence',
+    p: '"coffee 45, taxi 200, groceries 380" becomes real transactions with accounts & categories.',
+  },
+  {
+    h: 'Telegram',
+    kw: 'Just text it',
+    p: 'The same capture from the <strong>Telegram</strong> chat you already have open — the reason it sticks.',
+  },
+];
+---
+
+<section id={SECTION.capture} class="container py-16">
+  <p class="text-sm uppercase tracking-wide text-muted-foreground">
+    Three ways to capture
+  </p>
+  <div class="mt-6 grid gap-6 md:grid-cols-3">
+    {
+      methods.map((m) => (
+        <article class="rounded-lg border border-border bg-card p-6">
+          <div class="mb-4 aspect-video rounded bg-muted grid place-items-center text-xs text-muted-foreground">
+            screenshot — placeholder (tracker#62)
+          </div>
+          <p class="text-sm text-muted-foreground">{m.kw}</p>
+          <h3 class="mt-1 text-xl font-semibold">{m.h}</h3>
+          <p class="mt-2 text-muted-foreground" set:html={m.p} />
+        </article>
+      ))
+    }
+  </div>
+</section>
