@@ -1,0 +1,35 @@
+---
+import { GITHUB, DOCS_URL } from '../config';
+---
+
+<footer class="border-t border-border mt-24">
+  <div
+    class="container py-10 grid gap-8 md:grid-cols-4 text-sm text-muted-foreground"
+  >
+    <div>
+      <p class="font-semibold text-foreground">◆ HomeAccounting</p>
+      <p class="mt-2">Your money, your server, your data.</p>
+    </div>
+    <div>
+      <p class="font-medium text-foreground">Product</p>
+      <a class="block mt-2" href="/#hosting">Self-host vs Cloud</a>
+      <a class="block" href="/security">Security</a>
+      <!-- Comparison pages reserved for tracker#19 -->
+      <span class="block opacity-50">Comparisons (soon)</span>
+    </div>
+    <div>
+      <p class="font-medium text-foreground">Code</p>
+      <a class="block mt-2" href={GITHUB.web}>web</a>
+      <a class="block" href={GITHUB.backend}>backend</a>
+      <a class="block" href={DOCS_URL}>Docs</a>
+    </div>
+    <div>
+      <p class="font-medium text-foreground">Community &amp; legal</p>
+      <!-- Community lives on homeaccounting.org (future) -->
+      <span class="block mt-2 opacity-50">Community (.org, soon)</span>
+      <!-- Privacy/ToS reserved for tracker#10 -->
+      <span class="block opacity-50">Privacy / ToS (soon)</span>
+      <span class="block">AGPL-3.0</span>
+    </div>
+  </div>
+</footer>

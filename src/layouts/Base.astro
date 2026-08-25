@@ -1,0 +1,51 @@
+---
+import '../styles/globals.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { GOATCOUNTER } from '../config';
+interface Props {
+  title: string;
+  description?: string;
+}
+const {
+  title,
+  description = 'Home accounting that logs itself — and stays yours. Self-host or free cloud.',
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — HomeAccounting</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <!-- Theme from OS preference (no toggle for launch; shadcn tokens keyed on .dark). -->
+    <script is:inline>
+      if (matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.add('dark');
+    </script>
+  </head>
+  <body class="min-h-full flex flex-col">
+    <Nav />
+    <main class="flex-1"><slot /></main>
+    <Footer />
+    <script is:inline define:vars={{ gc: GOATCOUNTER }}>
+      if (
+        location.hostname !== 'localhost' &&
+        location.hostname !== '127.0.0.1'
+      ) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = '//gc.zgo.at/count.js';
+        s.setAttribute('data-goatcounter', gc);
+        document.head.appendChild(s);
+      }
+    </script>
+  </body>
+</html>

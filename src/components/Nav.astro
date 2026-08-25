@@ -1,0 +1,24 @@
+---
+import { cloudCta, GITHUB, DOCS_URL } from '../config';
+const cta = cloudCta();
+---
+
+<header class="border-b border-border">
+  <nav class="container flex items-center justify-between h-16">
+    <a href="/" class="font-semibold text-lg">◆ HomeAccounting</a>
+    <div
+      class="hidden md:flex items-center gap-6 text-sm text-muted-foreground"
+    >
+      <a href="/#capture">Features</a>
+      <a href="/#hosting">Self-host vs Cloud</a>
+      <a href="/security">Security</a>
+      <a href={DOCS_URL}>Docs</a>
+      <a href={GITHUB.web}>GitHub</a>
+    </div>
+    <a
+      href={cta.href}
+      class="rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium"
+      >{cta.label}</a
+    >
+  </nav>
+</header>
