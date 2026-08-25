@@ -2,7 +2,7 @@
 import '../styles/globals.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { GOATCOUNTER } from '../config';
+import { GOATCOUNTER, OG_IMAGE } from '../config';
 interface Props {
   title: string;
   description?: string;
@@ -25,13 +25,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL(OG_IMAGE, Astro.site).href} />
     <!-- Theme from OS preference (no toggle for launch; shadcn tokens keyed on .dark). -->
     <script is:inline>
       if (matchMedia('(prefers-color-scheme: dark)').matches)
         document.documentElement.classList.add('dark');
     </script>
   </head>
-  <body class="min-h-full flex flex-col">
+  <body class="min-h-screen flex flex-col">
     <Nav />
     <main class="flex-1"><slot /></main>
     <Footer />
