@@ -35,3 +35,14 @@ test('capture: three methods, monobank + Telegram keywords, anchor', () => {
     'Telegram',
   );
 });
+
+test('hosting: both columns, routing, parity row', () => {
+  has(
+    'index.html',
+    'id="hosting"',
+    'Self-host',
+    'Free cloud',
+    'Free while in beta',
+    'you can move between them',
+  );
+});
