@@ -1,0 +1,43 @@
+---
+import { cloudCta, DEMO_URL, GITHUB } from '../config';
+const cta = cloudCta();
+---
+
+<section class="container py-20 grid gap-12 lg:grid-cols-2 items-center">
+  <div>
+    <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+      Logging money takes seconds — or nothing at all. And it stays yours.
+    </h1>
+    <ul class="mt-8 space-y-3 text-lg text-muted-foreground">
+      <li>
+        <strong class="text-foreground">Almost no manual entry</strong> —
+        <strong>monobank</strong> imports itself, a plain-text sentence, or a
+        <strong>Telegram</strong> message.
+      </li>
+      <li>
+        <strong class="text-foreground"
+          >Your money, your server, your data</strong
+        >
+        — self-host or free cloud, open source (AGPL), export anytime.
+      </li>
+    </ul>
+    <div class="mt-8 flex flex-wrap items-center gap-4">
+      <a
+        href={cta.href}
+        class="rounded-md bg-primary text-primary-foreground px-5 py-3 font-medium"
+        >{cta.label}</a
+      >
+      <a
+        href={GITHUB.web}
+        class="rounded-md border border-border px-5 py-3 font-medium"
+        >Self-host / GitHub</a
+      >
+      <a href={DEMO_URL} class="text-sm underline">Try the live demo →</a>
+    </div>
+  </div>
+  <img
+    src="/hero-placeholder.svg"
+    alt="HomeAccounting app screenshot"
+    class="rounded-lg border border-border w-full"
+  />
+</section>

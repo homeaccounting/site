@@ -12,3 +12,15 @@ const has = (p, ...needles) => {
 test('shell: nav + footer present on landing', () => {
   has('index.html', '◆ HomeAccounting', 'Self-host vs Cloud', 'AGPL-3.0');
 });
+
+test('hero: headline + two pillars + both CTAs + demo stub', () => {
+  has(
+    'index.html',
+    'seconds', // truthful headline (no full-automation claim)
+    'Almost no manual entry',
+    'your server',
+    'Sign up free', // cloud CTA (LAUNCH_MODE=cloud)
+    'Self-host', // self-host CTA
+    'demo.homeaccounting.com', // DEMO_URL stub
+  );
+});
