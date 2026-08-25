@@ -38,6 +38,10 @@
     --ring: 212.7 26.8% 83.9%;
     --positive: 152 55% 45%;
   }
-  * { @apply border-border; }
-  body { @apply bg-background text-foreground antialiased; }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
 }
