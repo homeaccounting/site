@@ -32,11 +32,14 @@ export function cloudCta(mode: LaunchMode = LAUNCH_MODE): {
 // On-page anchor IDs — one source of truth so sections and nav/footer agree.
 export const SECTION = { capture: 'capture', hosting: 'hosting' } as const;
 
+// Marketing security page path — one source of truth for nav/footer/strip.
+export const SECURITY_PAGE_URL = '/security';
+
 // Primary nav links (rendered by Nav.astro).
 export const NAV_LINKS: { label: string; href: string }[] = [
   { label: 'Features', href: `/#${SECTION.capture}` },
   { label: 'Self-host vs Cloud', href: `/#${SECTION.hosting}` },
-  { label: 'Security', href: '/security' },
+  { label: 'Security', href: SECURITY_PAGE_URL },
   { label: 'Docs', href: DOCS_URL },
   { label: 'GitHub', href: GITHUB.web },
 ];
@@ -52,7 +55,7 @@ export const FOOTER: {
     heading: 'Product',
     links: [
       { label: 'Self-host vs Cloud', href: `/#${SECTION.hosting}` },
-      { label: 'Security', href: '/security' },
+      { label: 'Security', href: SECURITY_PAGE_URL },
     ],
     notes: [{ label: 'Comparisons (soon)', muted: true }], // tracker#19
   },

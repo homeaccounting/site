@@ -21,9 +21,9 @@ const methods = [
 ---
 
 <section id={SECTION.capture} class="container py-16">
-  <p class="text-sm uppercase tracking-wide text-muted-foreground">
+  <h2 class="text-sm uppercase tracking-wide text-muted-foreground">
     Three ways to capture
-  </p>
+  </h2>
   <div class="mt-6 grid gap-6 md:grid-cols-3">
     {
       methods.map((m) => (
@@ -33,6 +33,7 @@ const methods = [
           </div>
           <p class="text-sm text-muted-foreground">{m.kw}</p>
           <h3 class="mt-1 text-xl font-semibold">{m.h}</h3>
+          {/* m.p is a hardcoded, author-controlled literal (not user/external data) — raw HTML injection is safe here. */}
           <p class="mt-2 text-muted-foreground" set:html={m.p} />
         </article>
       ))

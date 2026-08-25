@@ -1,5 +1,5 @@
 ---
-import { SECURITY_MD_URL } from '../config';
+import { SECURITY_MD_URL, SECURITY_PAGE_URL } from '../config';
 ---
 
 <section class="container py-16">
@@ -11,7 +11,7 @@ import { SECURITY_MD_URL } from '../config';
     </p>
     <div class="mt-5 flex gap-4">
       <a
-        href="/security"
+        href={SECURITY_PAGE_URL}
         class="rounded-md bg-primary text-primary-foreground px-5 py-3 font-medium"
         >How we handle your money →</a
       >
