@@ -1,0 +1,10 @@
+# Internal design docs — kept out of this public repo
+docs/specs/
+docs/plans/
+
+node_modules/
+dist/
+.astro/
+
+# nix devshell lock — not generated reproducibly in CI (pnpm-based); generate + force-add locally if committed reproducibility is wanted
+flake.lock

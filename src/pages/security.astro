@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import { SECURITY_MD_URL, GITHUB, cloudCta } from '../config';
+const cta = cloudCta();
+const pillars = [
+  [
+    'Encrypted at rest',
+    'Bank credentials and tokens are encrypted at rest — never stored in plaintext.',
+  ],
+  [
+    'Self-host = your server',
+    'Run it entirely on your own machine; your data never has to touch our servers.',
+  ],
+  [
+    'Open source (AGPL)',
+    'The whole thing is auditable. Read the code, verify the claims, or fork it.',
+  ],
+  [
+    'Export & leave anytime',
+    'One-click export. The "you can leave anytime" promise is real, not marketing.',
+  ],
+];
+---
+
+<Base
+  title="Security"
+  description="How HomeAccounting protects your money: encrypted at rest, self-hostable, open source, export anytime."
+>
+  <section class="container py-20 max-w-3xl">
+    <h1 class="text-4xl font-bold">Security &amp; privacy at HomeAccounting</h1>
+    <p class="mt-4 text-lg text-muted-foreground">
+      Trust is the product. Here is exactly how your money is handled — and how
+      to verify it yourself.
+    </p>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      {
+        pillars.map(([h, p]) => (
+          <div class="rounded-lg border border-border p-6">
+            <h2 class="font-semibold">{h}</h2>
+            <p class="mt-2 text-muted-foreground">{p}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="mt-14 text-2xl font-bold">Responsible disclosure</h2>
+    <p class="mt-3 text-muted-foreground">
+      Found a vulnerability? Report it privately via our disclosure policy — we
+      respond fast and publish post-mortems. Threat model and policy live
+      alongside the code.
+    </p>
+    <p class="mt-3">
+      <a class="underline" href={SECURITY_MD_URL}
+        >SECURITY.md &amp; disclosure policy →</a
+      >
+    </p>
+
+    <div class="mt-14 rounded-lg border border-border bg-card p-8">
+      <h2 class="text-xl font-bold">Don't trust us? Run it yourself.</h2>
+      <div class="mt-4 flex gap-4">
+        <a
+          href={GITHUB.web}
+          class="rounded-md border border-border px-5 py-3 font-medium"
+          >Self-host / GitHub</a
+        >
+        <a
+          href={cta.href}
+          class="rounded-md bg-primary text-primary-foreground px-5 py-3 font-medium"
+          >{cta.label}</a
+        >
+      </div>
+    </div>
+  </section>
+</Base>

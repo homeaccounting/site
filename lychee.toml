@@ -1,0 +1,7 @@
+# Intentionally-stubbed links (resolve as the corresponding pages/features go live).
+exclude = [
+  "https://demo\\.homeaccounting\\.com",          # public demo (not yet live)
+  "https://github\\.com/homeaccounting/.*",       # code repositories
+  "https://homeaccounting\\.goatcounter\\.com/.*",
+  "https://www\\.homeaccounting\\.com.*",         # self-references (canonical/sitemap/robots) — live after the DNS cutover; revisit post-launch
+]
