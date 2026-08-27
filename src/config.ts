@@ -19,7 +19,7 @@ export const SECURITY_MD_URL = `${GITHUB.backend}/blob/master/SECURITY.md`; // r
 // GoatCounter count endpoint for the homeaccounting site (create the site before go-live).
 export const GOATCOUNTER = 'https://homeaccounting.goatcounter.com/count';
 
-// Branded social-preview card (1200x630) rendered from the logo + tagline.
+// Branded social-preview card (1200x630 @2x) rendered from the logo + tagline.
 export const OG_IMAGE = '/og.png';
 
 export function cloudCta(mode: LaunchMode = LAUNCH_MODE): {
