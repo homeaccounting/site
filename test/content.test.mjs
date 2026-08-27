@@ -18,7 +18,7 @@ test('hero: headline + two pillars + both CTAs + demo stub', () => {
     'index.html',
     'seconds', // truthful headline (no full-automation claim)
     'Almost no manual entry',
-    'your server',
+    'your data',
     'Sign up free', // cloud CTA (LAUNCH_MODE=cloud)
     'Self-host', // self-host CTA
     'demo.homeaccounting.com', // DEMO_URL stub
