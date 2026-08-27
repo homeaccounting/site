@@ -11,7 +11,6 @@ export const APP_URL = 'https://homeaccounting.com/app';
 export const GITHUB = {
   web: 'https://github.com/homeaccounting/web',
   backend: 'https://github.com/homeaccounting/backend',
-  docker: 'https://github.com/homeaccounting/docker',
 };
 // Docs live in the README/docs of the code repos.
 export const DOCS_URL = `${GITHUB.backend}#readme`;
