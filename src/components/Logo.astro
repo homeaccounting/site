@@ -1,0 +1,26 @@
+---
+// Shared logo mark — rounded badge + checkmark. Reused by Nav and Footer
+// (theme-aware via fill-primary/stroke-positive). public/favicon.svg mirrors
+// the same shape with static colors (favicon can't see page CSS vars) — keep
+// the rect/path geometry in sync if this changes.
+interface Props {
+  class?: string;
+}
+const { class: className = 'w-7 h-7' } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 32 32"
+  class={className}
+  aria-hidden="true"
+>
+  <rect width="32" height="32" rx="9" class="fill-primary"></rect>
+  <path
+    d="M9.5 17l5 5 9-11"
+    fill="none"
+    class="stroke-positive"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+</svg>

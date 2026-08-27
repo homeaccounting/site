@@ -1,20 +1,65 @@
 ---
 import { cloudCta, NAV_LINKS } from '../config';
+import Logo from './Logo.astro';
 const cta = cloudCta();
 ---
 
-<header class="border-b border-border">
+<header class="border-b border-border relative">
   <nav class="container flex items-center justify-between h-16">
-    <a href="/" class="font-semibold text-lg">◆ HomeAccounting</a>
+    <a href="/" class="flex items-center gap-2 font-semibold text-lg">
+      <Logo class="w-7 h-7" />
+      <span>HomeAccounting</span>
+    </a>
     <div
       class="hidden md:flex items-center gap-6 text-sm text-muted-foreground"
     >
       {NAV_LINKS.map((l) => <a href={l.href}>{l.label}</a>)}
     </div>
-    <a
-      href={cta.href}
-      class="rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium"
-      >{cta.label}</a
-    >
+    <div class="flex items-center gap-3">
+      <a
+        href={cta.href}
+        class="rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium"
+        >{cta.label}</a
+      >
+      <details class="md:hidden">
+        <summary
+          aria-label="Menu"
+          class="grid place-items-center w-9 h-9 rounded-md border border-border list-none cursor-pointer [&::-webkit-details-marker]:hidden"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            class="w-5 h-5"
+            aria-hidden="true"
+          >
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </summary>
+        <div
+          class="absolute inset-x-0 top-full bg-background border-b border-border"
+        >
+          <div class="container py-4 flex flex-col gap-4 text-sm">
+            {
+              NAV_LINKS.map((l) => (
+                <a href={l.href} class="text-muted-foreground">
+                  {l.label}
+                </a>
+              ))
+            }
+            <a
+              href={cta.href}
+              class="rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium text-center"
+              >{cta.label}</a
+            >
+          </div>
+        </div>
+      </details>
+    </div>
   </nav>
 </header>

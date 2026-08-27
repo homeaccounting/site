@@ -5,11 +5,15 @@ const cta = cloudCta();
 
 <section class="container py-20 grid gap-12 lg:grid-cols-2 items-center">
   <div>
-    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-balance">
+    <h1
+      class="text-4xl md:text-5xl font-bold tracking-tight text-balance animate-fade-up"
+    >
       Logging money takes seconds — or nothing at all. And it
       <span class="text-positive">stays yours</span>.
     </h1>
-    <ul class="mt-8 space-y-3 text-lg text-muted-foreground">
+    <ul
+      class="mt-8 space-y-3 text-lg text-muted-foreground animate-fade-up [animation-delay:100ms]"
+    >
       <li>
         <strong class="text-foreground">Almost no manual entry</strong> —
         <strong>monobank</strong> and <strong>PrivatBank</strong> bring in your transactions,
@@ -23,7 +27,9 @@ const cta = cloudCta();
         — self-host or free cloud, open source (AGPL), export anytime.
       </li>
     </ul>
-    <div class="mt-8 flex flex-wrap items-center gap-4">
+    <div
+      class="mt-8 flex flex-wrap items-center gap-4 animate-fade-up [animation-delay:200ms]"
+    >
       <a
         href={cta.href}
         class="rounded-md bg-primary text-primary-foreground px-5 py-3 font-medium transition-colors hover:bg-primary/90"

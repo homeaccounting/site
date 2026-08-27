@@ -1,5 +1,6 @@
 ---
 import { FOOTER } from '../config';
+import Logo from './Logo.astro';
 ---
 
 <footer class="border-t border-border mt-24">
@@ -7,7 +8,10 @@ import { FOOTER } from '../config';
     class="container py-10 grid gap-8 md:grid-cols-4 text-sm text-muted-foreground"
   >
     <div>
-      <p class="font-semibold text-foreground">◆ HomeAccounting</p>
+      <a href="/" class="flex items-center gap-2 font-semibold text-foreground">
+        <Logo class="w-6 h-6" />
+        <span>HomeAccounting</span>
+      </a>
       <p class="mt-2">Your money, your server, your data.</p>
     </div>
     {
