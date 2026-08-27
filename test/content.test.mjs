@@ -25,12 +25,13 @@ test('hero: headline + two pillars + both CTAs + demo stub', () => {
   );
 });
 
-test('capture: three methods, monobank + Telegram keywords, anchor', () => {
+test('capture: three methods, monobank + PrivatBank + Telegram keywords, anchor', () => {
   has(
     'index.html',
     'id="capture"',
     'Bank import',
     'monobank',
+    'PrivatBank',
     'Free-text prompt',
     'Telegram',
   );
