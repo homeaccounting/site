@@ -9,10 +9,12 @@ export const DEMO_URL = 'https://demo.homeaccounting.com';
 
 export const APP_URL = 'https://homeaccounting.com/app';
 export const GITHUB = {
+  org: 'https://github.com/homeaccounting',
   web: 'https://github.com/homeaccounting/web',
   backend: 'https://github.com/homeaccounting/backend',
 };
-// Docs live in the README/docs of the code repos.
+// Install/usage docs. Interim home = the backend README (self-host quickstart);
+// repoint here if a dedicated docs site/repo lands.
 export const DOCS_URL = `${GITHUB.backend}#readme`;
 export const SECURITY_MD_URL = `${GITHUB.backend}/blob/master/SECURITY.md`; // resolves once SECURITY.md is published
 
@@ -43,7 +45,7 @@ export const NAV_LINKS: { label: string; href: string }[] = [
   { label: 'Self-host vs Cloud', href: `/#${SECTION.hosting}` },
   { label: 'Security', href: SECURITY_PAGE_URL },
   { label: 'Docs', href: DOCS_URL },
-  { label: 'GitHub', href: GITHUB.web },
+  { label: 'GitHub', href: GITHUB.org },
 ];
 
 // Footer columns (rendered by Footer.astro). `notes` are non-link entries;
