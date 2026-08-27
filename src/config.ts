@@ -19,8 +19,8 @@ export const SECURITY_MD_URL = `${GITHUB.backend}/blob/master/SECURITY.md`; // r
 // GoatCounter count endpoint for the homeaccounting site (create the site before go-live).
 export const GOATCOUNTER = 'https://homeaccounting.goatcounter.com/count';
 
-// Placeholder social preview image; real asset lands later.
-export const OG_IMAGE = '/hero-placeholder.svg';
+// Branded social-preview card (1200x630) rendered from the logo + tagline.
+export const OG_IMAGE = '/og.png';
 
 export function cloudCta(mode: LaunchMode = LAUNCH_MODE): {
   label: string;
