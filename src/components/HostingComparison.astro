@@ -8,42 +8,92 @@ const parity = [
   'multi-currency',
   'export',
 ];
+
+const selfHost = [
+  'One command (Docker Compose)',
+  'Free forever',
+  'Data never leaves your machine',
+  'You control updates',
+];
+const freeCloud = [
+  'Nothing to install',
+  'Free while in beta',
+  'Encrypted at rest; export anytime',
+  'Automatic updates',
+];
 ---
 
 <section id={SECTION.hosting} class="container py-16">
   <h2 class="text-3xl font-bold">Same product — you choose who runs it</h2>
   <div class="mt-8 grid gap-6 md:grid-cols-2">
-    <div class="rounded-lg border border-border p-6">
+    <div class="rounded-lg bg-card border border-border shadow-lg p-6">
       <h3 class="text-xl font-semibold">🖥️ Self-host</h3>
       <ul class="mt-4 space-y-2 text-muted-foreground">
-        <li>One command (Docker Compose)</li>
-        <li>Free forever</li>
-        <li>Data never leaves your machine</li>
-        <li>You control updates</li>
+        {
+          selfHost.map((item) => (
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                class="w-4 h-4 mt-1 shrink-0 text-positive"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))
+        }
       </ul>
       <a
         href={DOCS_URL}
-        class="mt-6 inline-block rounded-md border border-border px-5 py-3 font-medium"
+        class="mt-6 inline-block rounded-md border border-border px-5 py-3 font-medium transition-colors hover:border-positive hover:text-positive"
         >Self-host / View on GitHub →</a
       >
     </div>
-    <div class="rounded-lg border border-border p-6 bg-card">
+    <div class="rounded-lg bg-card border border-border shadow-lg p-6">
       <h3 class="text-xl font-semibold">☁️ Free cloud</h3>
       <ul class="mt-4 space-y-2 text-muted-foreground">
-        <li>Nothing to install</li>
-        <li>Free while in beta</li>
-        <li>Encrypted at rest; export anytime</li>
-        <li>Automatic updates</li>
+        {
+          freeCloud.map((item) => (
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                class="w-4 h-4 mt-1 shrink-0 text-positive"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))
+        }
       </ul>
       <a
         href={cta.href}
-        class="mt-6 inline-block rounded-md bg-primary text-primary-foreground px-5 py-3 font-medium"
+        class="mt-6 inline-block rounded-md bg-primary text-primary-foreground px-5 py-3 font-medium transition-colors hover:bg-primary/90"
         >{cta.label} →</a
       >
     </div>
   </div>
   <p class="mt-6 text-sm text-muted-foreground">
-    Same on both — {parity.join(' · ')} ✓. The only difference is who operates it,
-    and <strong>you can move between them</strong> anytime (export/import).
+    Same on both — {parity.join(' · ')}
+    <span class="text-positive font-medium">✓</span>. The only difference is who
+    operates it, and <strong>you can move between them</strong> anytime (export/import).
   </p>
 </section>

@@ -5,8 +5,9 @@ const cta = cloudCta();
 
 <section class="container py-20 grid gap-12 lg:grid-cols-2 items-center">
   <div>
-    <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
-      Logging money takes seconds — or nothing at all. And it stays yours.
+    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-balance">
+      Logging money takes seconds — or nothing at all. And it
+      <span class="text-positive">stays yours</span>.
     </h1>
     <ul class="mt-8 space-y-3 text-lg text-muted-foreground">
       <li>
@@ -25,20 +26,33 @@ const cta = cloudCta();
     <div class="mt-8 flex flex-wrap items-center gap-4">
       <a
         href={cta.href}
-        class="rounded-md bg-primary text-primary-foreground px-5 py-3 font-medium"
+        class="rounded-md bg-primary text-primary-foreground px-5 py-3 font-medium transition-colors hover:bg-primary/90"
         >{cta.label}</a
       >
       <a
         href={DOCS_URL}
-        class="rounded-md border border-border px-5 py-3 font-medium"
+        class="rounded-md border border-border px-5 py-3 font-medium transition-colors hover:border-positive hover:text-positive"
         >Self-host / GitHub</a
       >
-      <a href={DEMO_URL} class="text-sm underline">Try the live demo →</a>
+      <a
+        href={DEMO_URL}
+        class="text-sm underline transition-colors hover:text-positive"
+        >Try the live demo →</a
+      >
     </div>
   </div>
-  <img
-    src="/hero-placeholder.svg"
-    alt="HomeAccounting app screenshot"
-    class="rounded-lg border border-border w-full"
-  />
+  <div
+    class="rounded-xl border border-border shadow-2xl overflow-hidden bg-card"
+  >
+    <div class="h-8 bg-muted flex items-center gap-1.5 px-3">
+      <span class="w-2.5 h-2.5 rounded-full bg-muted-foreground/30"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-muted-foreground/30"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-muted-foreground/30"></span>
+    </div>
+    <img
+      src="/hero-placeholder.svg"
+      alt="HomeAccounting app screenshot"
+      class="w-full aspect-video object-cover"
+    />
+  </div>
 </section>
