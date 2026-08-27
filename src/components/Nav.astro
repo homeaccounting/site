@@ -4,7 +4,7 @@ import Logo from './Logo.astro';
 const cta = cloudCta();
 ---
 
-<header class="border-b border-border relative">
+<header class="border-b border-border relative z-50">
   <nav class="container flex items-center justify-between h-16">
     <a href="/" class="flex items-center gap-2 font-semibold text-lg">
       <Logo class="w-7 h-7" />
@@ -42,7 +42,7 @@ const cta = cloudCta();
           </svg>
         </summary>
         <div
-          class="absolute inset-x-0 top-full bg-background border-b border-border"
+          class="absolute inset-x-0 top-full z-50 bg-background border-b border-border shadow-lg"
         >
           <div class="container py-4 flex flex-col gap-4 text-sm">
             {
