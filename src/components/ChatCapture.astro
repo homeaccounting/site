@@ -1,0 +1,49 @@
+---
+// Illustrative chat mock for the Telegram capture method. NOT a real screenshot
+// (the bot can't be linked yet) and deliberately NOT a Telegram look-alike —
+// styled in our own tokens and labelled "illustration" so it's honest. The
+// behaviour it depicts is real: the bot turns a free-text message into
+// transactions. Swap for a real capture once the bot is linkable.
+interface Props {
+  lang?: 'en' | 'uk';
+  class?: string;
+}
+const { lang = 'en', class: cls = '' } = Astro.props;
+
+const copy = {
+  en: {
+    user: 'coffee 45, taxi 200, groceries 380',
+    bot: '✓ Added 3 transactions',
+    items: 'Coffee ₴45 · Taxi ₴200 · Groceries ₴380',
+    note: 'Illustration',
+  },
+  uk: {
+    user: 'кава 45, таксі 200, продукти 380',
+    bot: '✓ Додано 3 транзакції',
+    items: 'Кава ₴45 · Таксі ₴200 · Продукти ₴380',
+    note: 'Ілюстрація',
+  },
+}[lang];
+---
+
+<div
+  role="img"
+  aria-label={`${copy.user} → ${copy.bot}: ${copy.items}`}
+  class={`relative aspect-video w-full rounded-md border border-border bg-muted/40 p-4 sm:p-5 flex flex-col justify-center gap-2.5 overflow-hidden ${cls}`}
+>
+  <div
+    class="self-end max-w-[80%] rounded-2xl rounded-br-sm bg-primary text-primary-foreground px-3 py-2 text-sm shadow"
+  >
+    {copy.user}
+  </div>
+  <div
+    class="self-start max-w-[85%] rounded-2xl rounded-bl-sm bg-card border border-border px-3 py-2 text-sm shadow"
+  >
+    <span class="font-medium text-positive">{copy.bot}</span>
+    <span class="mt-0.5 block text-xs text-muted-foreground">{copy.items}</span>
+  </div>
+  <span
+    class="absolute top-2 right-2 rounded-full bg-background/80 px-2 py-0.5 text-[10px] uppercase tracking-wide text-muted-foreground"
+    >{copy.note}</span
+  >
+</div>

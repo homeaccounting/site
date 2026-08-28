@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Lightbox from '../components/Lightbox.astro';
+import ChatCapture from '../components/ChatCapture.astro';
 import { cloudCta, DEMO_URL } from '../config';
 
 const cta = cloudCta();
@@ -19,7 +20,8 @@ const clips = [
 const flows: {
   title: string;
   blurb: string;
-  shots: { src: string; alt: string; caption: string }[];
+  shots?: { src: string; alt: string; caption: string }[];
+  mock?: 'chat';
 }[] = [
   {
     title: 'Accounts & transactions',
@@ -43,6 +45,11 @@ const flows: {
       { src: '/screens/prompt-en.png', alt: 'Quick-add composer in English', caption: 'Capture — English' },
       { src: '/screens/prompt-uk.png', alt: 'Quick-add composer in Ukrainian', caption: 'Capture — Українською' },
     ],
+  },
+  {
+    title: 'Telegram capture',
+    blurb: 'Text the bot and it logs the transactions — illustrated below until the live bot is linkable.',
+    mock: 'chat',
   },
   {
     title: 'Bank import',
@@ -141,7 +148,13 @@ const flows: {
           <h3 class="text-xl font-semibold">{f.title}</h3>
           <p class="mt-1 text-muted-foreground">{f.blurb}</p>
           <div class="mt-4 grid gap-6 sm:grid-cols-2">
-            {f.shots.map((s) => (
+            {f.mock === 'chat' && (
+              <>
+                <ChatCapture lang="en" />
+                <ChatCapture lang="uk" />
+              </>
+            )}
+            {(f.shots ?? []).map((s) => (
               <a
                 href={s.src}
                 data-lightbox

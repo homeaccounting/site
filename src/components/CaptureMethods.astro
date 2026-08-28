@@ -1,5 +1,6 @@
 ---
 import { SECTION, SCREENS_PAGE_URL } from '../config';
+import ChatCapture from './ChatCapture.astro';
 
 // Simple 24x24 stroke icons, inlined so no extra request/dep.
 const icons = {
@@ -16,6 +17,7 @@ const methods = [
     icon: icons.bank,
     img: '/capture-bank.png',
     imgAlt: 'Bank connections screen for importing transactions',
+    mock: undefined,
   },
   {
     h: 'Free-text prompt',
@@ -24,16 +26,19 @@ const methods = [
     icon: icons.chat,
     img: '/capture-prompt.png',
     imgAlt: 'Transactions view with the free-text quick-add composer',
+    mock: undefined,
   },
   {
     h: 'Telegram',
     kw: 'Just text it',
     p: 'The same capture from the <strong>Telegram</strong> chat you already have open — the reason it sticks.',
     icon: icons.send,
-    // No web screenshot for the Telegram surface — needs a real Telegram
-    // recording (tracker#62 hand-off). Falls back to the placeholder below.
+    // No real Telegram screenshot yet (bot can't be linked) — show an
+    // illustrative chat mock instead of a placeholder. Swap for a real
+    // capture when available.
     img: undefined,
     imgAlt: '',
+    mock: 'chat' as const,
   },
 ];
 ---
@@ -65,6 +70,10 @@ const methods = [
                   class="aspect-video w-full object-cover transition-transform hover:scale-[1.02]"
                 />
               </a>
+            ) : m.mock === 'chat' ? (
+              <div class="mb-4">
+                <ChatCapture lang="en" />
+              </div>
             ) : (
               <div class="mb-4 aspect-video rounded-md bg-muted grid place-items-center text-xs text-muted-foreground">
                 screenshot — coming soon
