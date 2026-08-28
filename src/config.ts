@@ -39,9 +39,13 @@ export const SECTION = { capture: 'capture', hosting: 'hosting' } as const;
 // Marketing security page path — one source of truth for nav/footer/strip.
 export const SECURITY_PAGE_URL = '/security';
 
+// Screenshot/flow gallery page — one source of truth for nav/footer/links.
+export const SCREENS_PAGE_URL = '/screens';
+
 // Primary nav links (rendered by Nav.astro).
 export const NAV_LINKS: { label: string; href: string }[] = [
   { label: 'Features', href: `/#${SECTION.capture}` },
+  { label: 'Screens', href: SCREENS_PAGE_URL },
   { label: 'Self-host vs Cloud', href: `/#${SECTION.hosting}` },
   { label: 'Security', href: SECURITY_PAGE_URL },
   { label: 'Docs', href: DOCS_URL },

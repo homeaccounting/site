@@ -1,5 +1,6 @@
 ---
-import { SECTION } from '../config';
+import { SECTION, SCREENS_PAGE_URL } from '../config';
+import ChatCapture from './ChatCapture.astro';
 
 // Simple 24x24 stroke icons, inlined so no extra request/dep.
 const icons = {
@@ -14,18 +15,30 @@ const methods = [
     kw: 'It logs itself',
     p: 'Direct <strong>monobank</strong> sync + <strong>PrivatBank</strong> / file import (CSV, XLSX). Categorized on arrival — you just confirm.',
     icon: icons.bank,
+    img: '/capture-bank.png',
+    imgAlt: 'Bank connections screen for importing transactions',
+    mock: undefined,
   },
   {
     h: 'Free-text prompt',
     kw: 'Type a sentence',
     p: '"coffee 45, taxi 200, groceries 380" becomes real transactions with accounts & categories.',
     icon: icons.chat,
+    img: '/capture-prompt.png',
+    imgAlt: 'Transactions view with the free-text quick-add composer',
+    mock: undefined,
   },
   {
     h: 'Telegram',
     kw: 'Just text it',
     p: 'The same capture from the <strong>Telegram</strong> chat you already have open — the reason it sticks.',
     icon: icons.send,
+    // No real Telegram screenshot yet (bot can't be linked) — show an
+    // illustrative chat mock instead of a placeholder. Swap for a real
+    // capture when available.
+    img: undefined,
+    imgAlt: '',
+    mock: 'chat' as const,
   },
 ];
 ---
@@ -39,9 +52,33 @@ const methods = [
       {
         methods.map((m) => (
           <article class="rounded-lg bg-card border border-border shadow-lg p-6">
-            <div class="mb-4 aspect-video rounded-md bg-muted grid place-items-center text-xs text-muted-foreground">
-              screenshot — coming soon
-            </div>
+            {m.img ? (
+              <a
+                href={m.img}
+                data-lightbox
+                data-alt={m.imgAlt}
+                data-caption={m.h}
+                aria-label={`Enlarge: ${m.h}`}
+                class="mb-4 block rounded-md overflow-hidden border border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-positive"
+              >
+                <img
+                  src={m.img}
+                  alt={m.imgAlt}
+                  width="1280"
+                  height="720"
+                  loading="lazy"
+                  class="aspect-video w-full object-cover transition-transform hover:scale-[1.02]"
+                />
+              </a>
+            ) : m.mock === 'chat' ? (
+              <div class="mb-4">
+                <ChatCapture lang="en" />
+              </div>
+            ) : (
+              <div class="mb-4 aspect-video rounded-md bg-muted grid place-items-center text-xs text-muted-foreground">
+                screenshot — coming soon
+              </div>
+            )}
             <div
               class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-positive/10 text-positive"
               aria-hidden="true"
@@ -64,5 +101,10 @@ const methods = [
         ))
       }
     </div>
+    <a
+      href={SCREENS_PAGE_URL}
+      class="mt-8 inline-block font-medium underline transition-colors hover:text-positive"
+      >See all screens &amp; flows →</a
+    >
   </div>
 </section>
