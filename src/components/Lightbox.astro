@@ -1,0 +1,76 @@
+---
+// Dependency-free lightbox. Any element marked `data-lightbox` (an <a href="/full.png">
+// wrapping a thumbnail) opens its target full-size in a native <dialog>. Without
+// JS the anchor still opens the image directly (progressive enhancement).
+// Include once per page that has [data-lightbox] triggers.
+---
+
+<dialog
+  id="lightbox"
+  aria-label="Enlarged screenshot"
+  class="m-auto max-w-[95vw] max-h-[92vh] w-auto bg-transparent p-0 backdrop:bg-black/80"
+>
+  <div class="relative">
+    <button
+      type="button"
+      data-lightbox-close
+      aria-label="Close"
+      class="absolute -top-3 -right-3 z-10 grid place-items-center w-9 h-9 rounded-full bg-card border border-border shadow-lg text-foreground hover:text-positive"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        class="w-5 h-5"
+        aria-hidden="true"
+      >
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+      </svg>
+    </button>
+    <img
+      id="lightbox-img"
+      src=""
+      alt=""
+      class="block max-w-[95vw] max-h-[92vh] w-auto h-auto rounded-lg border border-border shadow-2xl bg-card"
+    />
+    <p
+      id="lightbox-cap"
+      class="mt-2 text-center text-sm text-muted-foreground"
+    >
+    </p>
+  </div>
+</dialog>
+
+<script>
+  const dlg = document.getElementById('lightbox') as HTMLDialogElement | null;
+  const img = document.getElementById('lightbox-img') as HTMLImageElement | null;
+  const cap = document.getElementById('lightbox-cap');
+  if (dlg && img && cap) {
+    document.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        const full = el.getAttribute('href') ?? el.dataset.src;
+        if (!full) return;
+        e.preventDefault();
+        img.src = full;
+        img.alt = el.dataset.alt ?? '';
+        cap.textContent = el.dataset.caption ?? '';
+        dlg.showModal();
+      });
+    });
+    // Close on backdrop click and via the close button (Esc is handled natively).
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+    dlg
+      .querySelector('[data-lightbox-close]')
+      ?.addEventListener('click', () => dlg.close());
+    // Release the large image when closed so it isn't kept in memory.
+    dlg.addEventListener('close', () => {
+      img.src = '';
+    });
+  }
+</script>

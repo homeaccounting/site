@@ -1,5 +1,5 @@
 ---
-import { SECTION } from '../config';
+import { SECTION, SCREENS_PAGE_URL } from '../config';
 
 // Simple 24x24 stroke icons, inlined so no extra request/dep.
 const icons = {
@@ -48,14 +48,23 @@ const methods = [
         methods.map((m) => (
           <article class="rounded-lg bg-card border border-border shadow-lg p-6">
             {m.img ? (
-              <img
-                src={m.img}
-                alt={m.imgAlt}
-                width="1280"
-                height="720"
-                loading="lazy"
-                class="mb-4 aspect-video w-full object-cover rounded-md border border-border"
-              />
+              <a
+                href={m.img}
+                data-lightbox
+                data-alt={m.imgAlt}
+                data-caption={m.h}
+                aria-label={`Enlarge: ${m.h}`}
+                class="mb-4 block rounded-md overflow-hidden border border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-positive"
+              >
+                <img
+                  src={m.img}
+                  alt={m.imgAlt}
+                  width="1280"
+                  height="720"
+                  loading="lazy"
+                  class="aspect-video w-full object-cover transition-transform hover:scale-[1.02]"
+                />
+              </a>
             ) : (
               <div class="mb-4 aspect-video rounded-md bg-muted grid place-items-center text-xs text-muted-foreground">
                 screenshot — coming soon
@@ -83,5 +92,10 @@ const methods = [
         ))
       }
     </div>
+    <a
+      href={SCREENS_PAGE_URL}
+      class="mt-8 inline-block font-medium underline transition-colors hover:text-positive"
+      >See all screens &amp; flows →</a
+    >
   </div>
 </section>

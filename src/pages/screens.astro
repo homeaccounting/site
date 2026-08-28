@@ -1,0 +1,168 @@
+---
+import Base from '../layouts/Base.astro';
+import Lightbox from '../components/Lightbox.astro';
+import { cloudCta, DEMO_URL } from '../config';
+
+const cta = cloudCta();
+
+// Animated walkthroughs of the main flows (webm, muted autoplay loop).
+// `poster` (a matching screenshot) guarantees a meaningful frame if autoplay is
+// blocked or the visitor prefers reduced motion.
+const clips = [
+  { src: '/clips/capture-prompt.webm', poster: '/screens/prompt-en.png', title: 'Free-text capture', blurb: 'Type a sentence, get real transactions.' },
+  { src: '/clips/add-expense.webm', poster: '/screens/expense-en.png', title: 'Add an expense', blurb: 'Multi-allocation entry with categories.' },
+  { src: '/clips/banking-connect.webm', poster: '/screens/banking-en.png', title: 'Connect a bank', blurb: 'Add a monobank / PrivatBank connection.' },
+  { src: '/clips/onboarding.webm', poster: '/screens/onboarding-en.png', title: 'First-run setup', blurb: 'Country, currency & language in seconds.' },
+];
+
+// Every screen, grouped by flow. `en`/`uk` show the same screen in each UI language.
+const flows: {
+  title: string;
+  blurb: string;
+  shots: { src: string; alt: string; caption: string }[];
+}[] = [
+  {
+    title: 'Accounts & transactions',
+    blurb: 'Every account and a categorized, multi-currency transaction list.',
+    shots: [
+      { src: '/screens/transactions-en.png', alt: 'Transactions list with accounts sidebar', caption: 'Transactions' },
+    ],
+  },
+  {
+    title: 'Reports',
+    blurb: 'Spending by category, income vs. expense, and net worth across accounts.',
+    shots: [
+      { src: '/screens/reports-en.png', alt: 'Reports page in English', caption: 'Reports — English' },
+      { src: '/screens/reports-uk.png', alt: 'Reports page in Ukrainian', caption: 'Reports — Українською' },
+    ],
+  },
+  {
+    title: 'Free-text capture',
+    blurb: 'The quick-add composer that turns a sentence into transactions.',
+    shots: [
+      { src: '/screens/prompt-en.png', alt: 'Quick-add composer in English', caption: 'Capture — English' },
+      { src: '/screens/prompt-uk.png', alt: 'Quick-add composer in Ukrainian', caption: 'Capture — Українською' },
+    ],
+  },
+  {
+    title: 'Bank import',
+    blurb: 'monobank / PrivatBank connections and statement import.',
+    shots: [
+      { src: '/screens/banking-en.png', alt: 'Bank connections in English', caption: 'Bank import — English' },
+      { src: '/screens/banking-uk.png', alt: 'Bank connections in Ukrainian', caption: 'Bank import — Українською' },
+    ],
+  },
+  {
+    title: 'Add expense',
+    blurb: 'Split a single expense across categories, with a contact and labels.',
+    shots: [
+      { src: '/screens/expense-en.png', alt: 'Add expense dialog', caption: 'Add expense' },
+    ],
+  },
+  {
+    title: 'Transfer',
+    blurb: 'Move money between accounts, including cross-currency.',
+    shots: [
+      { src: '/screens/transfer-en.png', alt: 'Transfer dialog', caption: 'Transfer' },
+    ],
+  },
+  {
+    title: 'Onboarding',
+    blurb: 'First-run setup: country preset picks sensible currency & language.',
+    shots: [
+      { src: '/screens/onboarding-en.png', alt: 'Onboarding in English', caption: 'Onboarding — English' },
+      { src: '/screens/onboarding-uk.png', alt: 'Onboarding in Ukrainian', caption: 'Onboarding — Українською' },
+    ],
+  },
+];
+---
+
+<Base
+  title="Screens"
+  description="Every screen and flow of HomeAccounting — bank import, free-text capture, reports, transfers and onboarding, in English and Ukrainian."
+>
+  <section class="container py-16">
+    <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Screens &amp; flows</h1>
+    <p class="mt-3 max-w-2xl text-lg text-muted-foreground">
+      A tour of the real app — click any screen to enlarge. Everything below runs
+      in English and Ukrainian.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-4">
+      <a
+        href={cta.href}
+        class="rounded-md bg-primary text-primary-foreground px-5 py-3 font-medium transition-colors hover:bg-primary/90"
+        >{cta.label}</a
+      >
+      <a
+        href={DEMO_URL}
+        class="rounded-md border border-border px-5 py-3 font-medium transition-colors hover:border-positive hover:text-positive"
+        >Try the live demo →</a
+      >
+    </div>
+  </section>
+
+  <section class="bg-muted/40">
+    <div class="container py-16">
+      <h2 class="text-sm uppercase tracking-wide text-muted-foreground">
+        Watch the flows
+      </h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        {
+          clips.map((c) => (
+            <figure class="rounded-lg bg-card border border-border shadow-lg overflow-hidden">
+              <video
+                src={c.src}
+                poster={c.poster}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                class="w-full aspect-video object-cover bg-muted"
+              />
+              <figcaption class="p-4">
+                <h3 class="font-semibold">{c.title}</h3>
+                <p class="mt-1 text-sm text-muted-foreground">{c.blurb}</p>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-16 space-y-14">
+    <h2 class="text-sm uppercase tracking-wide text-muted-foreground">
+      Every screen
+    </h2>
+    {
+      flows.map((f) => (
+        <div>
+          <h3 class="text-xl font-semibold">{f.title}</h3>
+          <p class="mt-1 text-muted-foreground">{f.blurb}</p>
+          <div class="mt-4 grid gap-6 sm:grid-cols-2">
+            {f.shots.map((s) => (
+              <a
+                href={s.src}
+                data-lightbox
+                data-alt={s.alt}
+                data-caption={s.caption}
+                aria-label={`Enlarge: ${s.caption}`}
+                class="group block rounded-lg border border-border shadow-lg overflow-hidden bg-card transition-shadow hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-positive"
+              >
+                <img
+                  src={s.src}
+                  alt={s.alt}
+                  loading="lazy"
+                  class="w-full object-cover transition-transform group-hover:scale-[1.02]"
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <Lightbox />
+</Base>
