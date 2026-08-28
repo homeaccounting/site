@@ -27,6 +27,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={new URL(OG_IMAGE, Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(OG_IMAGE, Astro.site).href} />
     <!-- Theme from OS preference (no toggle for launch; shadcn tokens keyed on .dark). -->
     <script is:inline>
       if (matchMedia('(prefers-color-scheme: dark)').matches)

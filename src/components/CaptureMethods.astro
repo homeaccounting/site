@@ -14,18 +14,26 @@ const methods = [
     kw: 'It logs itself',
     p: 'Direct <strong>monobank</strong> sync + <strong>PrivatBank</strong> / file import (CSV, XLSX). Categorized on arrival — you just confirm.',
     icon: icons.bank,
+    img: '/capture-bank.png',
+    imgAlt: 'Bank connections screen for importing transactions',
   },
   {
     h: 'Free-text prompt',
     kw: 'Type a sentence',
     p: '"coffee 45, taxi 200, groceries 380" becomes real transactions with accounts & categories.',
     icon: icons.chat,
+    img: '/capture-prompt.png',
+    imgAlt: 'Transactions view with the free-text quick-add composer',
   },
   {
     h: 'Telegram',
     kw: 'Just text it',
     p: 'The same capture from the <strong>Telegram</strong> chat you already have open — the reason it sticks.',
     icon: icons.send,
+    // No web screenshot for the Telegram surface — needs a real Telegram
+    // recording (tracker#62 hand-off). Falls back to the placeholder below.
+    img: undefined,
+    imgAlt: '',
   },
 ];
 ---
@@ -39,9 +47,20 @@ const methods = [
       {
         methods.map((m) => (
           <article class="rounded-lg bg-card border border-border shadow-lg p-6">
-            <div class="mb-4 aspect-video rounded-md bg-muted grid place-items-center text-xs text-muted-foreground">
-              screenshot — coming soon
-            </div>
+            {m.img ? (
+              <img
+                src={m.img}
+                alt={m.imgAlt}
+                width="1280"
+                height="720"
+                loading="lazy"
+                class="mb-4 aspect-video w-full object-cover rounded-md border border-border"
+              />
+            ) : (
+              <div class="mb-4 aspect-video rounded-md bg-muted grid place-items-center text-xs text-muted-foreground">
+                screenshot — coming soon
+              </div>
+            )}
             <div
               class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-positive/10 text-positive"
               aria-hidden="true"
