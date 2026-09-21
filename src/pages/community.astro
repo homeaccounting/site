@@ -1,0 +1,44 @@
+---
+// Canonical community URL. Everything — READMEs, CONTRIBUTING, issue-template
+// contact links across all three repos — points here rather than at the raw
+// invite, so the invite can be rotated or the platform changed in one place.
+// Today it is a redirect; if the community ever spans more than one place
+// (forum, Discussions, Matrix) this becomes a real hub page at the same URL.
+// Deliberately standalone (no Base layout): no nav, no footer, no analytics on
+// a page nobody reads, and noindex so it stays out of search results.
+import { DISCORD_INVITE } from '../config';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0; url=${DISCORD_INVITE}`} />
+    <title>Community chat — HomeAccounting</title>
+    <style>
+      body {
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          sans-serif;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 1.5rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>Taking you to the HomeAccounting community on Discord…</p>
+      <p><a href={DISCORD_INVITE} rel="noopener">Open the invite</a></p>
+    </main>
+    <script is:inline define:vars={{ invite: DISCORD_INVITE }}>
+      location.replace(invite);
+    </script>
+  </body>
+</html>

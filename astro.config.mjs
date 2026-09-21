@@ -7,5 +7,9 @@ export default defineConfig({
   site: 'https://www.homeaccounting.com',
   output: 'static',
   // @astrojs/sitemap pinned to exact 3.6.0 in package.json — 3.6.1+ require the Astro 5 astro:routes:resolved hook and crash under Astro 4. Do not loosen.
-  integrations: [tailwind(), sitemap()],
+  // /community redirects to the invite today; not worth indexing as a page.
+  integrations: [
+    tailwind(),
+    sitemap({ filter: (page) => !page.endsWith('/community/') }),
+  ],
 });

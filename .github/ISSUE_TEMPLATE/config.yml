@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Chat with the community
+    url: https://www.homeaccounting.com/community
+    about: Discord — #general, #self-hosting, #bank-providers, #showcase.
+  - name: Question or idea
+    url: https://github.com/homeaccounting/backend/discussions
+    about: Discussions are the place for questions and ideas about the product.
+  - name: Security vulnerability
+    url: https://github.com/homeaccounting/backend/blob/master/SECURITY.md
+    about: Never report a security problem in a public issue. Email security@homeaccounting.com.
+  - name: Product bug
+    url: https://github.com/homeaccounting/web/issues/new/choose
+    about: This repository is only the marketing site. Bugs in the app belong on the web or backend repository.

@@ -1,0 +1,32 @@
+name: Content problem
+description: Copy that is wrong, unclear, outdated, or badly translated
+labels: [content]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      placeholder: /, /security, /screens
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: Quote the text as it stands, and say what is inaccurate or unclear about it.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested wording
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - English
+        - Ukrainian
+        - Other
+    validations:
+      required: true
