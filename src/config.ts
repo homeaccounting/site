@@ -8,6 +8,13 @@ export const LAUNCH_MODE: LaunchMode = 'cloud';
 export const DEMO_URL = 'https://demo.homeaccounting.com';
 
 export const APP_URL = 'https://homeaccounting.com/app';
+
+// Community chat. The raw invite is referenced ONLY by the /chat redirect page;
+// every other repo and page links to COMMUNITY_URL instead, so revoking or
+// replacing the invite (or leaving Discord entirely) is a one-line change here
+// rather than an edit in three repositories.
+export const DISCORD_INVITE = 'https://discord.gg/2rE3ZQHgv';
+export const COMMUNITY_URL = '/chat';
 export const GITHUB = {
   org: 'https://github.com/homeaccounting',
   web: 'https://github.com/homeaccounting/web',
@@ -78,10 +85,9 @@ export const FOOTER: {
   },
   {
     heading: 'Community & legal',
-    links: [],
-    // Community lives on homeaccounting.org (future); Privacy/ToS coming soon.
+    links: [{ label: 'Community chat', href: COMMUNITY_URL }],
+    // Privacy/ToS land with the hosted tier (tracker#10).
     notes: [
-      { label: 'Community (.org, soon)', muted: true },
       { label: 'Privacy / ToS (soon)', muted: true },
       { label: 'AGPL-3.0', muted: false },
     ],

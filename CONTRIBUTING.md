@@ -11,7 +11,9 @@ static site, deployed to GitHub Pages on every push to `master`.
   [web](https://github.com/homeaccounting/web/issues) for the interface,
   [backend](https://github.com/homeaccounting/backend/issues) for the API.
 - **Questions and ideas** —
-  [Discussions](https://github.com/homeaccounting/backend/discussions).
+  [Discussions](https://github.com/homeaccounting/backend/discussions), or the
+  [community chat](https://www.homeaccounting.com/chat) for anything
+  conversational.
 - **Security vulnerabilities** — never an issue; email
   `security@homeaccounting.com`.
 

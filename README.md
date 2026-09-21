@@ -50,6 +50,9 @@ publishes `dist` to GitHub Pages on `master`. The custom domain is pinned by
   `conduct@homeaccounting.com`
 - [`CLA.md`](CLA.md) — Contributor Licence Agreement, signed once via a bot on
   your first pull request
+- [Community chat](https://www.homeaccounting.com/chat) — Discord
+- [Discussions](https://github.com/homeaccounting/backend/discussions) —
+  questions and ideas
 
 Ukrainian is the first translation target; see CONTRIBUTING.
 
