@@ -9,11 +9,27 @@ export const DEMO_URL = 'https://demo.homeaccounting.com';
 
 export const APP_URL = 'https://homeaccounting.com/app';
 
-// Community chat. The raw invite is referenced ONLY by the /community page;
-// every other repo and page links to COMMUNITY_URL instead, so revoking or
-// replacing the invite (or leaving Discord entirely) is a one-line change here
-// rather than an edit in three repositories.
+// Community venues. Raw invites are referenced ONLY by the /community hub page;
+// every other repo and page links to COMMUNITY_URL instead, so rotating an
+// invite or dropping a platform is a one-line change here rather than an edit
+// across three repositories.
+//
+// Division of labour: Discord for real-time help in English, Telegram for the
+// Ukrainian beachhead (Telegram is where that audience already lives, and the
+// capture feature is Telegram-native), GitHub Discussions for anything a
+// stranger might later search for — Discord and Telegram are not indexed, so
+// durable answers have to land in Discussions or the docs.
 export const DISCORD_INVITE = 'https://discord.gg/2rE3ZQHgv';
+
+// Empty until the group exists; the hub page hides the entry while it is blank
+// rather than shipping a dead link.
+export const TELEGRAM_INVITE = '';
+
+// Repo-scoped today. Swap to https://github.com/orgs/homeaccounting/discussions
+// once org-level Discussions are switched on (Org Settings -> Discussions).
+export const DISCUSSIONS_URL =
+  'https://github.com/homeaccounting/backend/discussions';
+
 export const COMMUNITY_URL = '/community';
 export const GITHUB = {
   org: 'https://github.com/homeaccounting',

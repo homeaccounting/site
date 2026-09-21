@@ -5,4 +5,5 @@ exclude = [
   "https://homeaccounting\\.goatcounter\\.com/.*",
   "https://www\\.homeaccounting\\.com.*",         # self-references (canonical/sitemap/robots) — live after the DNS cutover; revisit post-launch
   "https://discord\\.gg/.*",                     # Discord rejects HEAD from CI runners; the invite is checked by hand
+  "https://t\\.me/.*",                           # same for Telegram invites
 ]

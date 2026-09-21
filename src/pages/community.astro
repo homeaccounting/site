@@ -1,44 +1,67 @@
 ---
-// Canonical community URL. Everything — READMEs, CONTRIBUTING, issue-template
-// contact links across all three repos — points here rather than at the raw
-// invite, so the invite can be rotated or the platform changed in one place.
-// Today it is a redirect; if the community ever spans more than one place
-// (forum, Discussions, Matrix) this becomes a real hub page at the same URL.
-// Deliberately standalone (no Base layout): no nav, no footer, no analytics on
-// a page nobody reads, and noindex so it stays out of search results.
-import { DISCORD_INVITE } from '../config';
+// Canonical community URL. Every repo — READMEs, CONTRIBUTING, issue-template
+// contact links — points here rather than at a platform invite, so invites can
+// be rotated, and platforms added or dropped, in one place.
+import Base from '../layouts/Base.astro';
+import { DISCORD_INVITE, TELEGRAM_INVITE, DISCUSSIONS_URL } from '../config';
+
+const venues = [
+  {
+    name: 'Discord',
+    href: DISCORD_INVITE,
+    lead: 'Real-time help and general chat, in English.',
+    detail:
+      'Self-hosting questions, bank-provider work, and whatever else comes up. The fastest way to reach other users and the maintainers.',
+  },
+  {
+    name: 'Telegram',
+    href: TELEGRAM_INVITE,
+    lead: 'Українською — для користувачів monobank та ПриватБанку.',
+    detail:
+      'The Ukrainian-language group, on the platform the capture feature already lives in.',
+  },
+  {
+    name: 'GitHub Discussions',
+    href: DISCUSSIONS_URL,
+    lead: 'Questions worth keeping.',
+    detail:
+      'Anything a future reader might search for: how-to questions, requests for a new bank, and ideas. Answers here stay findable; chat does not.',
+  },
+].filter((v) => v.href);
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <meta http-equiv="refresh" content={`0; url=${DISCORD_INVITE}`} />
-    <title>Community chat — HomeAccounting</title>
-    <style>
-      body {
-        font-family:
-          ui-sans-serif,
-          system-ui,
-          sans-serif;
-        display: grid;
-        place-items: center;
-        min-height: 100vh;
-        margin: 0;
-        padding: 1.5rem;
-        text-align: center;
+<Base
+  title="Community"
+  description="Where to find the HomeAccounting community: Discord, Telegram, and GitHub Discussions."
+>
+  <section class="container py-20 max-w-3xl">
+    <h1 class="text-4xl font-bold">Community</h1>
+    <p class="mt-4 text-lg text-muted-foreground">
+      Three rooms, on purpose. Chat is fast but disappears; Discussions are slow
+      but stay findable for the next person with the same question.
+    </p>
+
+    <div class="mt-10 grid gap-6">
+      {
+        venues.map((v) => (
+          <a
+            class="rounded-lg border border-border p-6 hover:border-foreground/40"
+            href={v.href}
+            rel="noopener"
+          >
+            <h2 class="font-semibold">{v.name}</h2>
+            <p class="mt-1">{v.lead}</p>
+            <p class="mt-2 text-muted-foreground">{v.detail}</p>
+          </a>
+        ))
       }
-    </style>
-  </head>
-  <body>
-    <main>
-      <p>Taking you to the HomeAccounting community on Discord…</p>
-      <p><a href={DISCORD_INVITE} rel="noopener">Open the invite</a></p>
-    </main>
-    <script is:inline define:vars={{ invite: DISCORD_INVITE }}>
-      location.replace(invite);
-    </script>
-  </body>
-</html>
+    </div>
+
+    <p class="mt-10 text-muted-foreground">
+      Found a security vulnerability? Please do not post it in any of these.
+      Email <a class="underline" href="mailto:security@homeaccounting.com"
+        >security@homeaccounting.com</a
+      > — see the security policy for what to expect.
+    </p>
+  </section>
+</Base>

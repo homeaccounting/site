@@ -62,9 +62,14 @@ test('security page: pillars + disclosure + links resolve to security artifacts'
   );
 });
 
-test('community: footer links to /community, which redirects to the invite', () => {
+test('community: footer links to /community, which lists the venues', () => {
   has('index.html', 'href="/community"');
-  has('community/index.html', 'discord.gg/', 'noindex');
+  has(
+    'community/index.html',
+    'discord.gg/', // Discord invite
+    'discussions', // GitHub Discussions
+    'security@homeaccounting.com', // vulnerabilities do not go in chat
+  );
 });
 
 test('deploy artifacts: CNAME + sitemap present in dist', () => {
