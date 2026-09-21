@@ -9,11 +9,28 @@ export const DEMO_URL = 'https://demo.homeaccounting.com';
 
 export const APP_URL = 'https://homeaccounting.com/app';
 
-// Community chat. The raw invite is referenced ONLY by the /community page;
-// every other repo and page links to COMMUNITY_URL instead, so revoking or
-// replacing the invite (or leaving Discord entirely) is a one-line change here
-// rather than an edit in three repositories.
+// Community venues. Raw invites are referenced ONLY by the /community hub page;
+// every other repo and page links to COMMUNITY_URL instead, so rotating an
+// invite or dropping a platform is a one-line change here rather than an edit
+// across three repositories.
+//
+// Division of labour: Discord for real-time help in English, Telegram for the
+// Ukrainian beachhead (Telegram is where that audience already lives, and the
+// capture feature is Telegram-native), GitHub Discussions for anything a
+// stranger might later search for — Discord and Telegram are not indexed, so
+// durable answers have to land in Discussions or the docs.
 export const DISCORD_INVITE = 'https://discord.gg/2rE3ZQHgv';
+
+// Broadcast channel (Ukrainian), with comments open under each post via its
+// linked discussion group — deliberately not a standalone chat group: Discord
+// already covers chat, and an empty room reads worse than a quiet feed.
+export const TELEGRAM_INVITE = 'https://t.me/homeaccounting';
+
+// Org-level Discussions (source repository: the org's .github repo), so the
+// forum is not presented as belonging to one code repo.
+export const DISCUSSIONS_URL =
+  'https://github.com/orgs/homeaccounting/discussions';
+
 export const COMMUNITY_URL = '/community';
 export const GITHUB = {
   org: 'https://github.com/homeaccounting',
@@ -85,7 +102,7 @@ export const FOOTER: {
   },
   {
     heading: 'Community & legal',
-    links: [{ label: 'Community chat', href: COMMUNITY_URL }],
+    links: [{ label: 'Community — Discord & Telegram', href: COMMUNITY_URL }],
     // Privacy/ToS land with the hosted tier (tracker#10).
     notes: [
       { label: 'Privacy / ToS (soon)', muted: true },
