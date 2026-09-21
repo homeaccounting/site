@@ -42,3 +42,16 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+  # Stable aggregate check named "CI" (PR-time), the shared required check for the
+  # org ruleset. Gates on `build` only — `deploy` is push-only and must never be
+  # required to merge.
+  ci:
+    name: CI
+    needs: [build]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require build to pass
+        run: |
+          echo "build: ${{ needs.build.result }}"
+          test "${{ needs.build.result }}" = "success"
