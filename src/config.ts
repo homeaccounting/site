@@ -25,10 +25,10 @@ export const DISCORD_INVITE = 'https://discord.gg/2rE3ZQHgv';
 // rather than shipping a dead link.
 export const TELEGRAM_INVITE = '';
 
-// Repo-scoped today. Swap to https://github.com/orgs/homeaccounting/discussions
-// once org-level Discussions are switched on (Org Settings -> Discussions).
+// Org-level Discussions (source repository: the org's .github repo), so the
+// forum is not presented as belonging to one code repo.
 export const DISCUSSIONS_URL =
-  'https://github.com/homeaccounting/backend/discussions';
+  'https://github.com/orgs/homeaccounting/discussions';
 
 export const COMMUNITY_URL = '/community';
 export const GITHUB = {
