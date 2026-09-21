@@ -102,7 +102,7 @@ export const FOOTER: {
   },
   {
     heading: 'Community & legal',
-    links: [{ label: 'Community chat', href: COMMUNITY_URL }],
+    links: [{ label: 'Community — Discord & Telegram', href: COMMUNITY_URL }],
     // Privacy/ToS land with the hosted tier (tracker#10).
     notes: [
       { label: 'Privacy / ToS (soon)', muted: true },
