@@ -1,0 +1,32 @@
+HomeAccounting — marketing site
+Copyright (C) 2026 The HomeAccounting maintainers
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version. See LICENSE for the full text.
+
+--------------------------------------------------------------------------------
+BRAND CARVE-OUT
+--------------------------------------------------------------------------------
+
+The AGPL-3.0 licence above covers the SOURCE CODE of this site — the Astro
+components, styles, build configuration, and copy.
+
+It does NOT grant any licence to the HomeAccounting trademarks. The following
+are excluded from the licence and are governed by the trademark usage policy at
+https://github.com/homeaccounting/backend/blob/master/TRADEMARK.md:
+
+  - the name "HomeAccounting" and any confusingly similar name;
+  - the HomeAccounting logo, wordmark, and icon, in every file format and
+    colour variant held in this repository (including anything under
+    public/ that depicts them);
+  - product screenshots depicting the HomeAccounting interface with its
+    branding intact.
+
+In short: you may reuse this site's code, including for a fork or a derived
+project, and you may quote and translate its text. You may not present the
+result as HomeAccounting. Replace the name and the logo when you do.
+
+Trademark registration is in progress; the policy applies to the unregistered
+marks in the meantime. Questions: legal@homeaccounting.com
