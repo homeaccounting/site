@@ -21,9 +21,10 @@ export const APP_URL = 'https://homeaccounting.com/app';
 // durable answers have to land in Discussions or the docs.
 export const DISCORD_INVITE = 'https://discord.gg/2rE3ZQHgv';
 
-// Empty until the group exists; the hub page hides the entry while it is blank
-// rather than shipping a dead link.
-export const TELEGRAM_INVITE = '';
+// Broadcast channel (Ukrainian), with comments open under each post via its
+// linked discussion group — deliberately not a standalone chat group: Discord
+// already covers chat, and an empty room reads worse than a quiet feed.
+export const TELEGRAM_INVITE = 'https://t.me/homeaccounting';
 
 // Org-level Discussions (source repository: the org's .github repo), so the
 // forum is not presented as belonging to one code repo.

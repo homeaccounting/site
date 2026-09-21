@@ -67,6 +67,7 @@ test('community: footer links to /community, which lists the venues', () => {
   has(
     'community/index.html',
     'discord.gg/', // Discord invite
+    't.me/', // Telegram channel
     'discussions', // GitHub Discussions
     'security@homeaccounting.com', // vulnerabilities do not go in chat
   );
