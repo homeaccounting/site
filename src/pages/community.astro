@@ -5,7 +5,13 @@
 import Base from '../layouts/Base.astro';
 import { DISCORD_INVITE, TELEGRAM_INVITE, DISCUSSIONS_URL } from '../config';
 
-const venues = [
+const venues: {
+  name: string;
+  href: string;
+  lang?: string;
+  lead: string;
+  detail: string;
+}[] = [
   {
     name: 'Discord',
     href: DISCORD_INVITE,
@@ -16,6 +22,9 @@ const venues = [
   {
     name: 'Telegram',
     href: TELEGRAM_INVITE,
+    // The whole document is lang="en"; this line is not, and a screen reader
+    // will mangle it with an English voice without the override.
+    lang: 'uk',
     lead: 'Українською — для користувачів monobank та ПриватБанку.',
     detail:
       'Releases and updates in Ukrainian, on the platform the capture feature already lives in. Comments are open under every post.',
@@ -50,7 +59,9 @@ const venues = [
             rel="noopener"
           >
             <h2 class="font-semibold">{v.name}</h2>
-            <p class="mt-1">{v.lead}</p>
+            <p class="mt-1" lang={v.lang}>
+              {v.lead}
+            </p>
             <p class="mt-2 text-muted-foreground">{v.detail}</p>
           </a>
         ))

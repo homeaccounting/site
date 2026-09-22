@@ -43,6 +43,12 @@ export const GITHUB = {
 // Install/usage docs. Interim home = the backend README (self-host quickstart);
 // repoint here if a dedicated docs site/repo lands.
 export const DOCS_URL = `${GITHUB.backend}#readme`;
+
+// Governance documents (added across all three repos in tracker#67). The site
+// is where a prospective contributor lands first, so it has to link them.
+export const LICENSE_URL = `${GITHUB.org}/site/blob/master/LICENSE`;
+export const CONTRIBUTING_URL = `${GITHUB.org}/site/blob/master/CONTRIBUTING.md`;
+export const CONDUCT_URL = `${GITHUB.org}/site/blob/master/CODE_OF_CONDUCT.md`;
 export const SECURITY_MD_URL = `${GITHUB.backend}/blob/master/SECURITY.md`; // resolves once SECURITY.md is published
 
 // GoatCounter count endpoint for the homeaccounting site (create the site before go-live).
@@ -89,6 +95,7 @@ export const NAV_LINKS: { label: string; href: string }[] = [
   { label: 'Self-host vs Cloud', href: `/#${SECTION.hosting}` },
   { label: 'Security', href: SECURITY_PAGE_URL },
   { label: 'Docs', href: DOCS_URL },
+  { label: 'Community', href: COMMUNITY_URL },
   { label: 'GitHub', href: GITHUB.org },
 ];
 
@@ -113,16 +120,18 @@ export const FOOTER: {
       { label: 'web', href: GITHUB.web },
       { label: 'backend', href: GITHUB.backend },
       { label: 'Docs', href: DOCS_URL },
+      { label: 'Contributing', href: CONTRIBUTING_URL },
     ],
     notes: [],
   },
   {
     heading: 'Community & legal',
-    links: [{ label: 'Community — Discord & Telegram', href: COMMUNITY_URL }],
-    // Privacy/ToS land with the hosted tier (tracker#10).
-    notes: [
-      { label: 'Privacy / ToS (soon)', muted: true },
-      { label: 'AGPL-3.0', muted: false },
+    links: [
+      { label: 'Community — Discord & Telegram', href: COMMUNITY_URL },
+      { label: 'Code of Conduct', href: CONDUCT_URL },
+      { label: 'AGPL-3.0 licence', href: LICENSE_URL },
     ],
+    // Privacy/ToS land with the hosted tier (tracker#10).
+    notes: [{ label: 'Privacy / ToS (soon)', muted: true }],
   },
 ];

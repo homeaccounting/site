@@ -1,0 +1,45 @@
+---
+// GitHub Pages serves this for any unknown path, replacing its own unbranded
+// 404 (tracker#70). The first broken inbound link is likeliest right after an
+// announcement, which is exactly when a dead end costs the most.
+import Base from '../layouts/Base.astro';
+import { cloudCta, COMMUNITY_URL, SCREENS_PAGE_URL, SECURITY_PAGE_URL } from '../config';
+
+const cta = cloudCta();
+const elsewhere = [
+  { label: 'Home', href: '/' },
+  { label: 'Screens & flows', href: SCREENS_PAGE_URL },
+  { label: 'Security', href: SECURITY_PAGE_URL },
+  { label: 'Community', href: COMMUNITY_URL },
+];
+---
+
+<Base
+  title="Page not found"
+  description="That page does not exist. Find the app, the screens, the security page and the community here."
+>
+  <section class="container py-24 max-w-2xl text-center">
+    <p class="text-sm uppercase tracking-wide text-muted-foreground">404</p>
+    <h1 class="mt-2 text-4xl font-bold">That page does not exist</h1>
+    <p class="mt-4 text-lg text-muted-foreground">
+      The link is probably old or mistyped. Everything else is still here.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      {
+        elsewhere.map((l) => (
+          <a
+            href={l.href}
+            class="rounded-md border border-border px-4 py-2 font-medium transition-colors hover:border-positive hover:text-positive"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a
+        href={cta.href}
+        class="rounded-md bg-primary text-primary-foreground px-4 py-2 font-medium transition-colors hover:bg-primary/90"
+        >{cta.label}</a
+      >
+    </div>
+  </section>
+</Base>
