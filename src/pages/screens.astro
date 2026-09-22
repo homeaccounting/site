@@ -2,9 +2,12 @@
 import Base from '../layouts/Base.astro';
 import Lightbox from '../components/Lightbox.astro';
 import ChatCapture from '../components/ChatCapture.astro';
-import { cloudCta, DEMO_URL } from '../config';
+import { cloudCta, demoCta, DEMO_LIVE } from '../config';
 
 const cta = cloudCta();
+// On this page the demo CTA has no fallback: demoCta()'s stand-in is this very
+// page, so the button simply waits for the demo to exist (tracker#13).
+const demo = DEMO_LIVE ? demoCta() : null;
 
 // Animated walkthroughs of the main flows (webm, muted autoplay loop).
 // `poster` (a matching screenshot) guarantees a meaningful frame if autoplay is
@@ -100,11 +103,16 @@ const flows: {
         class="rounded-md bg-primary text-primary-foreground px-5 py-3 font-medium transition-colors hover:bg-primary/90"
         >{cta.label}</a
       >
-      <a
-        href={DEMO_URL}
-        class="rounded-md border border-border px-5 py-3 font-medium transition-colors hover:border-positive hover:text-positive"
-        >Try the live demo →</a
-      >
+      {
+        demo && (
+          <a
+            href={demo.href}
+            class="rounded-md border border-border px-5 py-3 font-medium transition-colors hover:border-positive hover:text-positive"
+          >
+            {demo.label}
+          </a>
+        )
+      }
     </div>
   </section>
 

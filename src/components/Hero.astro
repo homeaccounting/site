@@ -1,6 +1,7 @@
 ---
-import { cloudCta, DEMO_URL, DOCS_URL } from '../config';
+import { cloudCta, demoCta, DOCS_URL } from '../config';
 const cta = cloudCta();
+const demo = demoCta();
 ---
 
 <section class="container py-20 grid gap-12 lg:grid-cols-2 items-center">
@@ -22,7 +23,7 @@ const cta = cloudCta();
       </li>
       <li>
         <strong class="text-foreground">Your money, your data</strong>
-        — self-host or free cloud, open source (AGPL), export anytime.
+        — self-host or free cloud, open source (AGPL).
       </li>
     </ul>
     <div
@@ -39,9 +40,9 @@ const cta = cloudCta();
         >Self-host / GitHub</a
       >
       <a
-        href={DEMO_URL}
+        href={demo.href}
         class="text-sm underline transition-colors hover:text-positive"
-        >Try the live demo →</a
+        >{demo.label}</a
       >
     </div>
   </div>

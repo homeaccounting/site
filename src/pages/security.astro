@@ -16,15 +16,15 @@ const pillars = [
     'The whole thing is auditable. Read the code, verify the claims, or fork it.',
   ],
   [
-    'Export & leave anytime',
-    'One-click export. The "you can leave anytime" promise is real, not marketing.',
+    'A real disclosure route',
+    'Private vulnerability reporting on every repository, a published security contact, and coordinated disclosure.',
   ],
 ];
 ---
 
 <Base
   title="Security"
-  description="How HomeAccounting protects your money: encrypted at rest, self-hostable, open source, export anytime."
+  description="How HomeAccounting protects your money: encrypted at rest, self-hostable, open source, with a real disclosure route."
 >
   <section class="container py-20 max-w-3xl">
     <h1 class="text-4xl font-bold">Security &amp; privacy at HomeAccounting</h1>
@@ -46,9 +46,12 @@ const pillars = [
 
     <h2 class="mt-14 text-2xl font-bold">Responsible disclosure</h2>
     <p class="mt-3 text-muted-foreground">
-      Found a vulnerability? Report it privately via our disclosure policy — we
-      respond fast and publish post-mortems. Threat model and policy live
-      alongside the code.
+      Found a vulnerability? Report it privately — through GitHub&rsquo;s private
+      vulnerability reporting on any of our repositories, or by email to <a
+        class="underline"
+        href="mailto:security@homeaccounting.com">security@homeaccounting.com</a
+      >. We acknowledge within 3 business days and coordinate disclosure with
+      you.
     </p>
     <p class="mt-3">
       <a class="underline" href={SECURITY_MD_URL}

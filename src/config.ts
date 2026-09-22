@@ -4,7 +4,10 @@ export type LaunchMode = 'cloud' | 'self-host-first';
 // 'self-host-first' to swap the cloud CTA to a waitlist. Default: cloud-at-launch.
 export const LAUNCH_MODE: LaunchMode = 'cloud';
 
-// Stubbed until the public read-only demo is live. Allow-listed in lychee.toml.
+// The public read-only demo (tracker#13) does not exist yet: the host has no
+// DNS record, so every link to it is dead. Flip DEMO_LIVE when it is up and
+// both CTAs return — see demoCta() below. Allow-listed in lychee.toml.
+export const DEMO_LIVE = false;
 export const DEMO_URL = 'https://demo.homeaccounting.com';
 
 export const APP_URL = 'https://homeaccounting.com/app';
@@ -65,6 +68,19 @@ export const SECURITY_PAGE_URL = '/security';
 
 // Screenshot/flow gallery page — one source of truth for nav/footer/links.
 export const SCREENS_PAGE_URL = '/screens';
+
+// Until the demo is live, the closest honest thing we have is the screens
+// gallery (real captures + flow clips), so the third CTA keeps pointing
+// somewhere real rather than disappearing. On /screens itself the caller drops
+// the button instead — linking to the page you are already on is not a CTA.
+export function demoCta(live: boolean = DEMO_LIVE): {
+  label: string;
+  href: string;
+} {
+  return live
+    ? { label: 'Try the live demo →', href: DEMO_URL }
+    : { label: 'See the screens →', href: SCREENS_PAGE_URL };
+}
 
 // Primary nav links (rendered by Nav.astro).
 export const NAV_LINKS: { label: string; href: string }[] = [
