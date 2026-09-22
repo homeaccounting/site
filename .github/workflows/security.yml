@@ -1,0 +1,33 @@
+name: Security
+
+# Parity with web and backend, which have scanned every change since they went
+# public. This repo is lower risk — a static marketing site with no runtime
+# secrets — but it is public, it holds the CLA workflow's configuration, and
+# "nothing secret lives here" is an assumption worth enforcing rather than
+# asserting.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: ['**']
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.sha || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history — a value scan of every commit, not just HEAD
+      - name: gitleaks (git history + working tree)
+        run: docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:latest git /repo --redact --exit-code 1
