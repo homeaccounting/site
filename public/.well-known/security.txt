@@ -1,0 +1,9 @@
+# HomeAccounting — security contact (RFC 9116).
+# `Expires` must stay in the future or the file is invalid: test/content.test.mjs
+# fails the build 30 days ahead of it, so renewal is a red CI run, not a surprise.
+Contact: mailto:security@homeaccounting.com
+Contact: https://github.com/homeaccounting/backend/security/advisories/new
+Expires: 2027-09-22T00:00:00.000Z
+Policy: https://github.com/homeaccounting/backend/blob/master/SECURITY.md
+Preferred-Languages: en, uk
+Canonical: https://www.homeaccounting.com/.well-known/security.txt
