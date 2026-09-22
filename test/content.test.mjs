@@ -21,7 +21,7 @@ test('hero: headline + two pillars + all three CTAs', () => {
     'your data',
     'Sign up free', // cloud CTA (LAUNCH_MODE=cloud)
     'Self-host', // self-host CTA
-    'See the screens', // demoCta() stand-in while DEMO_LIVE is false
+    'Try the live demo', // demoCta() with DEMO_LIVE true (tracker#71)
   );
 });
 
@@ -101,7 +101,6 @@ test('security.txt: published at /.well-known, required fields, renewal not due'
 // build fails here rather than the claim failing in front of a visitor.
 test('no claim outruns the product (tracker#69)', () => {
   const banned = [
-    ['demo.homeaccounting.com', 'tracker#13 — the demo host has no DNS'],
     ['one command', 'tracker#13 — compose starts Postgres only'],
     ['export anytime', 'tracker#16 — no export endpoint exists'],
     ['one-click export', 'tracker#16 — no export endpoint exists'],
