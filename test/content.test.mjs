@@ -77,3 +77,21 @@ test('deploy artifacts: CNAME + sitemap present in dist', () => {
   assert.equal(html('CNAME').trim(), 'www.homeaccounting.com');
   assert.ok(existsSync(new URL('../dist/sitemap-index.xml', import.meta.url)));
 });
+
+test('security.txt: published at /.well-known, required fields, renewal not due', () => {
+  const txt = html('.well-known/security.txt');
+  for (const field of ['Contact:', 'Expires:', 'Policy:', 'Canonical:'])
+    assert.ok(
+      txt.includes(field),
+      `security.txt missing RFC 9116 field: ${field}`,
+    );
+  assert.ok(
+    txt.includes('mailto:security@homeaccounting.com'),
+    'security.txt must carry the security@ contact',
+  );
+  // RFC 9116 invalidates the file the moment Expires passes. Fail 30 days early
+  // so renewal surfaces as a red build, not as a silently dead contact.
+  const expires = new Date(txt.match(/^Expires:\s*(\S+)/m)[1]);
+  const days = Math.round((expires - Date.now()) / 86400000);
+  assert.ok(days > 30, `security.txt Expires is ${days} days away — renew it`);
+});
