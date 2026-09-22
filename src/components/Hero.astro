@@ -1,5 +1,5 @@
 ---
-import { cloudCta, demoCta, DOCS_URL } from '../config';
+import { cloudCta, demoCta, SELFHOST_URL } from '../config';
 const cta = cloudCta();
 const demo = demoCta();
 ---
@@ -35,9 +35,9 @@ const demo = demoCta();
         >{cta.label}</a
       >
       <a
-        href={DOCS_URL}
+        href={SELFHOST_URL}
         class="rounded-md border border-border px-5 py-3 font-medium transition-colors hover:border-positive hover:text-positive"
-        >Self-host / GitHub</a
+        >Self-host</a
       >
       <a
         href={demo.href}
