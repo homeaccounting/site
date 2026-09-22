@@ -6,12 +6,17 @@ import { GOATCOUNTER, OG_IMAGE } from '../config';
 interface Props {
   title: string;
   description?: string;
+  // Error pages have no canonical URL of their own: Pages serves 404.html at
+  // whatever path failed, so a canonical of /404/ points at a URL that 404s —
+  // which the link check rightly rejects. They must not be indexed either.
+  noindex?: boolean;
 }
 const {
   title,
   description = 'Home accounting that logs itself — and stays yours. Self-host or free cloud.',
+  noindex = false,
 } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const canonical = noindex ? null : new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
@@ -21,7 +26,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} — HomeAccounting</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/logo.png" type="image/png" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

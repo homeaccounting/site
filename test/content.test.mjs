@@ -144,6 +144,11 @@ test('nav: community is reachable from every page, not just the footer', () => {
 // likeliest right after an announcement.
 test('404: branded page with the shell and a way back', () => {
   has('404.html', 'does not exist', 'HomeAccounting', 'href="/screens"');
+  // Pages serves this body at whatever path failed, so a canonical of /404/
+  // would point at a URL that 404s — and an error page must not be indexed.
+  const h = html('404.html');
+  assert.ok(!h.includes('rel="canonical"'), '404 must not claim a canonical URL');
+  assert.ok(h.includes('name="robots" content="noindex"'), '404 must be noindex');
 });
 
 // The document is lang="en"; these strings are not, and a screen reader would
