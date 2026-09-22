@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SECURITY_MD_URL, GITHUB, cloudCta } from '../config';
+import { SECURITY_MD_URL, SELFHOST_URL, cloudCta } from '../config';
 const cta = cloudCta();
 const pillars = [
   [
@@ -63,9 +63,9 @@ const pillars = [
       <h2 class="text-xl font-bold">Don't trust us? Run it yourself.</h2>
       <div class="mt-4 flex gap-4">
         <a
-          href={GITHUB.web}
+          href={SELFHOST_URL}
           class="rounded-md border border-border px-5 py-3 font-medium"
-          >Self-host / GitHub</a
+          >Self-host</a
         >
         <a
           href={cta.href}

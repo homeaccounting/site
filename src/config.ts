@@ -39,7 +39,14 @@ export const GITHUB = {
   org: 'https://github.com/homeaccounting',
   web: 'https://github.com/homeaccounting/web',
   backend: 'https://github.com/homeaccounting/backend',
+  stack: 'https://github.com/homeaccounting/docker',
 };
+
+// Where "self-host" goes. Not the backend — self-hosting is the whole system
+// (edge + api + web + postgres), and `docker` is the compose stack that runs
+// it. It is also exactly what homeaccounting.com runs, which is the point:
+// the self-host path cannot drift from production (tracker#72).
+export const SELFHOST_URL = `${GITHUB.org}/docker`;
 // Install/usage docs. Interim home = the backend README (self-host quickstart);
 // repoint here if a dedicated docs site/repo lands.
 export const DOCS_URL = `${GITHUB.backend}#readme`;
@@ -119,6 +126,7 @@ export const FOOTER: {
     links: [
       { label: 'web', href: GITHUB.web },
       { label: 'backend', href: GITHUB.backend },
+      { label: 'Self-host stack', href: SELFHOST_URL },
       { label: 'Docs', href: DOCS_URL },
       { label: 'Contributing', href: CONTRIBUTING_URL },
     ],

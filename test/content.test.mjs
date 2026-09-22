@@ -157,3 +157,22 @@ test('Ukrainian copy declares its language', () => {
   has('community/index.html', 'lang="uk"');
   has('screens/index.html', 'lang="uk"');
 });
+
+// tracker#72: "Self-host" used to point at the backend repo — one service of
+// four, and a Nix/cabal contributor guide rather than an install path. Self
+// hosting is the whole system, so every such CTA goes to the stack.
+test('self-host CTAs point at the stack, not at one of its services', () => {
+  const stack = 'href="https://github.com/homeaccounting/docker"';
+  for (const page of ['index.html', 'security/index.html'])
+    assert.ok(html(page).includes(stack), `dist/${page} must link the self-host stack`);
+
+  const home = html('index.html');
+  // The hero CTA and the self-host column both resolve to the stack.
+  assert.match(home, /homeaccounting\/docker"[^>]*>\s*Self-host/);
+  assert.ok(home.includes('The self-host stack'), 'the hosting column must link the stack');
+  // The regression: self-host pointing at one service's contributor guide.
+  assert.ok(
+    !/backend#readme"[^>]*>\s*Self-host/.test(home),
+    'a Self-host CTA points at the backend README again',
+  );
+});
