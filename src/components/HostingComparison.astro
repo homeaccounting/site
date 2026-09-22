@@ -1,16 +1,9 @@
 ---
 import { cloudCta, DOCS_URL, SECTION } from '../config';
 const cta = cloudCta();
-const parity = [
-  'bank import',
-  'prompt',
-  'Telegram',
-  'multi-currency',
-  'export',
-];
+const parity = ['bank import', 'prompt', 'Telegram', 'multi-currency'];
 
 const selfHost = [
-  'One command (Docker Compose)',
   'Free forever',
   'Data never leaves your machine',
   'You control updates',
@@ -18,7 +11,7 @@ const selfHost = [
 const freeCloud = [
   'Nothing to install',
   'Free while in beta',
-  'Encrypted at rest; export anytime',
+  'Encrypted at rest',
   'Automatic updates',
 ];
 ---
@@ -55,7 +48,7 @@ const freeCloud = [
       <a
         href={DOCS_URL}
         class="mt-6 inline-block rounded-md border border-border px-5 py-3 font-medium transition-colors hover:border-positive hover:text-positive"
-        >Self-host / View on GitHub →</a
+        >Build from source →</a
       >
     </div>
     <div class="rounded-lg bg-card border border-border shadow-lg p-6">
@@ -93,7 +86,7 @@ const freeCloud = [
   </div>
   <p class="mt-6 text-sm text-muted-foreground">
     Same on both — {parity.join(' · ')}
-    <span class="text-positive font-medium">✓</span>. The only difference is who
-    operates it, and <strong>you can move between them</strong> anytime (export/import).
+    <span class="text-positive font-medium">✓</span>. The only difference is
+    <strong>who operates it</strong>.
   </p>
 </section>

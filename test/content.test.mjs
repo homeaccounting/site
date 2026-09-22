@@ -13,7 +13,7 @@ test('shell: nav + footer present on landing', () => {
   has('index.html', 'HomeAccounting', 'Self-host vs Cloud', 'AGPL-3.0');
 });
 
-test('hero: headline + two pillars + both CTAs + demo stub', () => {
+test('hero: headline + two pillars + all three CTAs', () => {
   has(
     'index.html',
     'seconds', // truthful headline (no full-automation claim)
@@ -21,7 +21,7 @@ test('hero: headline + two pillars + both CTAs + demo stub', () => {
     'your data',
     'Sign up free', // cloud CTA (LAUNCH_MODE=cloud)
     'Self-host', // self-host CTA
-    'demo.homeaccounting.com', // DEMO_URL stub
+    'See the screens', // demoCta() stand-in while DEMO_LIVE is false
   );
 });
 
@@ -44,7 +44,7 @@ test('hosting: both columns, routing, parity row', () => {
     'Self-host',
     'Free cloud',
     'Free while in beta',
-    'you can move between them',
+    'who operates it', // parity line, minus the export/import round-trip claim
   );
 });
 
@@ -94,4 +94,33 @@ test('security.txt: published at /.well-known, required fields, renewal not due'
   const expires = new Date(txt.match(/^Expires:\s*(\S+)/m)[1]);
   const days = Math.round((expires - Date.now()) / 86400000);
   assert.ok(days > 30, `security.txt Expires is ${days} days away — renew it`);
+});
+
+// tracker#69: each phrase below was on the live site describing something that
+// did not exist. A phrase returns only when its feature does — otherwise the
+// build fails here rather than the claim failing in front of a visitor.
+test('no claim outruns the product (tracker#69)', () => {
+  const banned = [
+    ['demo.homeaccounting.com', 'tracker#13 — the demo host has no DNS'],
+    ['one command', 'tracker#13 — compose starts Postgres only'],
+    ['export anytime', 'tracker#16 — no export endpoint exists'],
+    ['one-click export', 'tracker#16 — no export endpoint exists'],
+    ['leave anytime', 'tracker#16 — leaving requires an export'],
+    ['export/import', 'tracker#16 — neither direction round-trips'],
+    ['threat model', 'tracker#2 — unwritten'],
+    ['post-mortem', 'never promised by SECURITY.md'],
+  ];
+  for (const page of [
+    'index.html',
+    'security/index.html',
+    'screens/index.html',
+    'community/index.html',
+  ]) {
+    const h = html(page).toLowerCase();
+    for (const [phrase, why] of banned)
+      assert.ok(
+        !h.includes(phrase),
+        `dist/${page} claims "${phrase}" again — ${why}. Ship it or keep it off the site.`,
+      );
+  }
 });
