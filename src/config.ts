@@ -4,10 +4,10 @@ export type LaunchMode = 'cloud' | 'self-host-first';
 // 'self-host-first' to swap the cloud CTA to a waitlist. Default: cloud-at-launch.
 export const LAUNCH_MODE: LaunchMode = 'cloud';
 
-// The public read-only demo (tracker#13) does not exist yet: the host has no
-// DNS record, so every link to it is dead. Flip DEMO_LIVE when it is up and
-// both CTAs return — see demoCta() below. Allow-listed in lychee.toml.
-export const DEMO_LIVE = false;
+// The public demo (tracker#71) is live: web builds its VITE_DEMO sandbox to
+// GitHub Pages, so every visitor gets an isolated, seeded, in-browser copy of
+// the app. Set false to pull both CTAs if it ever goes down — see demoCta().
+export const DEMO_LIVE = true;
 export const DEMO_URL = 'https://demo.homeaccounting.com';
 
 export const APP_URL = 'https://homeaccounting.com/app';
