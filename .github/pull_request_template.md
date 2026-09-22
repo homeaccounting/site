@@ -13,4 +13,4 @@
 - [ ] Screenshots come from the synthetic seed dataset, not real data
 - [ ] No new third-party scripts, fonts, or trackers
 - [ ] Title follows Conventional Commits
-- [ ] I have signed the [CLA](../CLA.md) (a bot will ask on your first PR)
+- [ ] I have signed the [CLA](https://github.com/homeaccounting/site/blob/master/CLA.md) (a bot will ask on your first PR)
