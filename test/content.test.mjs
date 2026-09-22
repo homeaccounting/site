@@ -123,3 +123,32 @@ test('no claim outruns the product (tracker#69)', () => {
       );
   }
 });
+
+// tracker#70: the site named these documents without linking them, so a
+// contributor arriving from the site had no path to any of them.
+test('footer: governance documents are linked, not just named', () => {
+  has(
+    'index.html',
+    '/blob/master/LICENSE',
+    '/blob/master/CONTRIBUTING.md',
+    '/blob/master/CODE_OF_CONDUCT.md',
+  );
+});
+
+test('nav: community is reachable from every page, not just the footer', () => {
+  has('index.html', '>Community<');
+});
+
+// Pages serves 404.html for unknown paths. Without it visitors get GitHub's
+// unbranded page — no nav, no way back — and the first broken inbound link is
+// likeliest right after an announcement.
+test('404: branded page with the shell and a way back', () => {
+  has('404.html', 'does not exist', 'HomeAccounting', 'href="/screens"');
+});
+
+// The document is lang="en"; these strings are not, and a screen reader would
+// otherwise read them with an English voice.
+test('Ukrainian copy declares its language', () => {
+  has('community/index.html', 'lang="uk"');
+  has('screens/index.html', 'lang="uk"');
+});
