@@ -1,0 +1,56 @@
+name: Live link check
+
+# The check in deploy.yml validates the built output before it ships. Nothing
+# re-checks the site once it is live, so a link that dies later — an expiring
+# invite, a renamed upstream file, a moved SECURITY.md — stays broken until a
+# human happens to click it. This runs the same config against production.
+#
+# A failure notifies the repository's watchers. It deliberately does not open
+# an issue: the tracker is a separate private repository, and cross-repo issue
+# creation would need a PAT for very little gain.
+
+on:
+  schedule:
+    # Mondays 07:00 UTC — a broken launch page is then found at the start of a
+    # working week rather than sitting through a weekend.
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: live-link-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Check the live site
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      # lychee has no crawler, so it only checks links on the documents it is
+      # given. Taking the page list from the sitemap keeps this current by
+      # itself — a new page is covered the moment it is published.
+      - name: Collect live page URLs from the sitemap
+        id: pages
+        run: |
+          set -euo pipefail
+          maps=$(curl -fsS https://www.homeaccounting.com/sitemap-index.xml \
+                 | grep -oE '<loc>[^<]+</loc>' | sed -E 's|</?loc>||g')
+          urls=$(for m in $maps; do
+                   curl -fsS "$m" | grep -oE '<loc>[^<]+</loc>' | sed -E 's|</?loc>||g'
+                 done | tr '\n' ' ')
+          test -n "$urls" || { echo "::error::sitemap yielded no page URLs"; exit 1; }
+          echo "Checking: $urls"
+          echo "list=$urls" >> "$GITHUB_OUTPUT"
+
+      - name: Check every link on every page
+        uses: lycheeverse/lychee-action@v2
+        with:
+          {
+            args: '--config lychee.toml --no-progress ${{ steps.pages.outputs.list }}',
+            token: '${{ secrets.GITHUB_TOKEN }}',
+            fail: true,
+          }

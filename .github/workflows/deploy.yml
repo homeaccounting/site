@@ -21,11 +21,15 @@ jobs:
       # resolve a directory path ("Cannot find module '.../test'"); the glob
       # form works on both Node 20.x and 22.22.x.
       - run: node --test test/*.test.mjs
+      # token: github.com/homeaccounting/* is no longer excluded, and
+      # unauthenticated GitHub requests from shared CI runners hit the 60/hour
+      # rate limit, which would surface as flaky 429s rather than real errors.
       - name: Link check
         uses: lycheeverse/lychee-action@v2
         with:
           {
             args: '--config lychee.toml --root-dir ${{ github.workspace }}/dist dist',
+            token: '${{ secrets.GITHUB_TOKEN }}',
           }
       - name: A11y + perf
         run: npx --yes @lhci/cli@0.14.x autorun --collect.staticDistDir=./dist --assert.preset=lighthouse:recommended || true
