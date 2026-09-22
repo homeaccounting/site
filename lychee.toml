@@ -1,8 +1,18 @@
-# Intentionally-stubbed links (resolve as the corresponding pages/features go live).
+# Link-check exclusions. Keep this list short and justified: every pattern here
+# is a link CI does not verify, and the point of the check is that a dead link
+# in the launch pages fails a build rather than a visitor.
+#
+# Not excluded any more, deliberately:
+#   github.com/homeaccounting/*  — the repos are public (tracker#11), so the
+#     SECURITY.md, CLA.md and README deep links the site depends on are checked
+#   www.homeaccounting.com       — the DNS cutover happened; canonical, sitemap
+#     and robots self-references are checked
+#   demo.homeaccounting.com      — the sandbox is live (tracker#71)
 exclude = [
-  "https://github\\.com/homeaccounting/.*",       # code repositories
-  "https://homeaccounting\\.goatcounter\\.com/.*",
-  "https://www\\.homeaccounting\\.com.*",         # self-references (canonical/sitemap/robots) — live after the DNS cutover; revisit post-launch
-  "https://discord\\.gg/.*",                     # Discord rejects HEAD from CI runners; the invite is checked by hand
-  "https://t\\.me/.*",                           # same for Telegram invites
+  # Discord and Telegram reject HEAD from CI runners, so these cannot be
+  # verified here. NOTE: that also makes invite *expiry* invisible to CI — the
+  # Discord invite must be a never-expiring one, and is checked by hand
+  # (tracker#20).
+  "https://discord\\.gg/.*",
+  "https://t\\.me/.*",
 ]
