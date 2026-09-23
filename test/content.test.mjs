@@ -100,8 +100,9 @@ test('security.txt: published at /.well-known, required fields, renewal not due'
 // did not exist. A phrase returns only when its feature does — otherwise the
 // build fails here rather than the claim failing in front of a visitor.
 test('no claim outruns the product (tracker#69)', () => {
+  // 'one command' was here until tracker#72: the compose stack that starts the
+  // whole system now exists at homeaccounting/docker, and production runs it.
   const banned = [
-    ['one command', 'tracker#13 — compose starts Postgres only'],
     ['export anytime', 'tracker#16 — no export endpoint exists'],
     ['one-click export', 'tracker#16 — no export endpoint exists'],
     ['leave anytime', 'tracker#16 — leaving requires an export'],
