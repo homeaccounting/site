@@ -47,9 +47,11 @@ export const GITHUB = {
 // it. It is also exactly what homeaccounting.com runs, which is the point:
 // the self-host path cannot drift from production (tracker#72).
 export const SELFHOST_URL = `${GITHUB.org}/docker`;
-// Install/usage docs. Interim home = the backend README (self-host quickstart);
-// repoint here if a dedicated docs site/repo lands.
-export const DOCS_URL = `${GITHUB.backend}#readme`;
+// Install/usage docs. The stack's README is the install path — quickstart,
+// every setting, profiles, backups — so "Docs" and "Self-host" land in the
+// same place rather than on one service's contributor guide (tracker#72).
+// Repoint here if a dedicated docs site lands.
+export const DOCS_URL = `${GITHUB.stack}#readme`;
 
 // Governance documents (added across all three repos in tracker#67). The site
 // is where a prospective contributor lands first, so it has to link them.
