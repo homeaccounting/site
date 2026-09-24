@@ -1,0 +1,148 @@
+---
+// Canonical home of the brand usage policy (tracker#8).
+//
+// Moved here from backend/TRADEMARK.md, where it landed only because backend
+// was the first repo to go public (backend#6). Its audience is mostly people
+// who will never open a repository — someone naming a package, writing an
+// article, or weighing up a fork — so it belongs on the site next to /privacy
+// and /terms, with every repo linking this one URL instead of copying the text.
+//
+// NOT REVIEWED BY COUNSEL. The marks are unregistered; see the Status section.
+import Base from '../layouts/Base.astro';
+import { LAST_UPDATED, SELFHOST_URL } from '../config';
+---
+
+<Base
+  title="Trademark"
+  description="How you may use the HomeAccounting name and logo: what is free, what needs a rebrand, and what is never allowed."
+>
+  <section class="container max-w-3xl py-20">
+    <h1 class="text-4xl font-bold">Trademark and brand usage policy</h1>
+    <p class="mt-4 text-lg text-muted-foreground">
+      The HomeAccounting <strong>software</strong> is free and open source under
+      the AGPL-3.0. The HomeAccounting <strong>name, logo and visual identity</strong
+      > are not — they are trademarks of the project, and this page explains how
+      you may use them.
+    </p>
+    <p class="mt-2 text-sm text-muted-foreground">Last updated {LAST_UPDATED}.</p>
+
+    <p class="mt-6 text-muted-foreground">
+      This is normal for open-source projects and is not a restriction on your
+      software freedom. Its purpose is narrow: when someone sees the
+      HomeAccounting name on a personal-finance application, they must be able
+      to trust that it is this project, with this project&rsquo;s security
+      posture. A fork that changes the code and keeps the name breaks that
+      guarantee for everyone.
+    </p>
+
+    <div
+      class="mt-8 rounded-lg border border-border bg-muted/40 p-6 text-muted-foreground"
+    >
+      <p class="font-semibold text-foreground">Status</p>
+      <p class="mt-2">
+        The HomeAccounting marks are <strong>unregistered</strong>, and no
+        application is on file. This policy rests on unregistered rights —
+        narrower than a registration, but real, and the same footing most
+        open-source brand policies stand on. If that changes, this paragraph
+        changes with it.
+      </p>
+    </div>
+
+    <h2 class="mt-14 text-2xl font-bold">You may, without asking</h2>
+    <ul class="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+      <li>
+        State truthfully that your project, product or article <strong
+          >works with</strong
+        >, <strong>is built on</strong>, <strong>integrates with</strong> or
+        <strong>is compatible with</strong> HomeAccounting.
+      </li>
+      <li>
+        Use the name in prose to refer to this project — in documentation, blog
+        posts, talks, comparisons, reviews and academic work, including critical
+        ones.
+      </li>
+      <li>
+        Run an <strong>unmodified</strong> build of HomeAccounting for yourself,
+        your family, your company or your clients, and call it HomeAccounting.
+      </li>
+      <li>
+        Use the logo to link to the project or to indicate an integration,
+        without altering its colours, proportions or elements.
+      </li>
+      <li>Redistribute unmodified official builds and packages under the project name.</li>
+    </ul>
+
+    <h2 class="mt-14 text-2xl font-bold">You must rebrand if you</h2>
+    <ul class="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+      <li>
+        Distribute a <strong>modified</strong> version of HomeAccounting. Change
+        the name, the logo and the visible branding. You keep every freedom the
+        AGPL gives you over the code; you simply may not call the result
+        HomeAccounting.
+      </li>
+      <li>
+        Operate a <strong>hosted service</strong> based on HomeAccounting for
+        third parties under a name containing &ldquo;HomeAccounting&rdquo;, or in
+        a way that implies it is the official managed service.
+      </li>
+    </ul>
+    <p class="mt-3 text-muted-foreground">
+      When you rebrand, please keep an accurate attribution such as &ldquo;based
+      on HomeAccounting&rdquo; — that is encouraged, and is not a trademark use
+      we object to.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">You may never</h2>
+    <ul class="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+      <li>
+        Use the name or logo in a way that suggests your project, service or
+        company is official, endorsed by or affiliated with HomeAccounting when
+        it is not.
+      </li>
+      <li>
+        Register the name, a confusingly similar name, or the logo as your own
+        trademark, company name or domain in a way that suggests official status.
+      </li>
+      <li>
+        Use the marks on merchandise for sale, or in advertising for an unrelated
+        product.
+      </li>
+      <li>
+        Alter the logo, or combine it with other marks in a way that creates a
+        new composite mark.
+      </li>
+    </ul>
+
+    <h2 class="mt-14 text-2xl font-bold">Domains, social accounts and package names</h2>
+    <p class="mt-3 text-muted-foreground">
+      Do not register domain names, social-media handles or package-registry
+      names containing &ldquo;homeaccounting&rdquo; in a way that implies you are
+      the project. <code class="rounded bg-muted px-1.5 py-0.5 text-sm"
+        >homeaccounting-monzo-provider</code
+      > as a community package is fine; <code
+        class="rounded bg-muted px-1.5 py-0.5 text-sm">homeaccounting-cloud.com</code
+      > as a competing hosted service is not.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">Questions and permission</h2>
+    <p class="mt-3 text-muted-foreground">
+      This policy cannot anticipate everything, and we would rather say yes to a
+      reasonable use than have you guess. Ask at <a
+        class="underline"
+        href="mailto:legal@homeaccounting.com">legal@homeaccounting.com</a
+      >, or open a discussion. Permission granted in writing overrides anything
+      above.
+    </p>
+    <p class="mt-3 text-muted-foreground">
+      We reserve the right to revise this policy; revisions will not be applied
+      retroactively to uses already permitted in writing.
+    </p>
+
+    <p class="mt-14 text-sm text-muted-foreground">
+      The code itself is under the AGPL-3.0 and is yours to fork — <a
+        class="underline"
+        href={SELFHOST_URL}>run it yourself</a
+      >, modify it, redistribute it. This page is only about the name.
+    </p>
+  </section>
+</Base>

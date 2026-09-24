@@ -94,6 +94,18 @@ export const SCREENS_PAGE_URL = '/screens';
 export const PRIVACY_PAGE_URL = '/privacy';
 export const TERMS_PAGE_URL = '/terms';
 
+// Our own origin, for the handful of places that need an absolute URL — the
+// repos link the trademark policy from outside this site. Keep in step with
+// `site:` in astro.config.mjs, which drives canonicals and the sitemap.
+export const SITE_ORIGIN = 'https://www.homeaccounting.com';
+
+// The brand usage policy. Canonical here rather than in a repo: its audience is
+// mostly people who will never open one — someone naming a package, writing an
+// article, or weighing up a fork. Every repo links this URL instead of carrying
+// a copy, so there is one text to keep true (tracker#8).
+export const TRADEMARK_PAGE_URL = '/trademark';
+export const TRADEMARK_URL = `${SITE_ORIGIN}${TRADEMARK_PAGE_URL}`;
+
 // Shown on both legal pages. One constant so the two can never disagree about
 // when they were last revised — bump it in the same commit as the wording.
 export const LAST_UPDATED = '24 September 2026';
@@ -204,6 +216,7 @@ export const FOOTER: {
       { label: 'AGPL-3.0 licence', href: LICENSE_URL },
       { label: 'Privacy', href: PRIVACY_PAGE_URL },
       { label: 'Terms', href: TERMS_PAGE_URL },
+      { label: 'Trademark', href: TRADEMARK_PAGE_URL },
     ],
     notes: [],
   },

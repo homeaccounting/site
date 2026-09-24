@@ -117,6 +117,7 @@ test('no claim outruns the product (tracker#69)', () => {
     'community/index.html',
     'privacy/index.html',
     'terms/index.html',
+    'trademark/index.html',
   ]) {
     const h = html(page).toLowerCase();
     for (const [phrase, why] of banned)
@@ -173,6 +174,26 @@ test('terms: the free-beta shape, the exit, and no invented jurisdiction', () =>
   assert.ok(
     !/governed by the laws of/i.test(html('terms/index.html')),
     'terms name a governing law, but the legal entity is still undecided',
+  );
+});
+
+// tracker#8: the brand policy moved here from backend/TRADEMARK.md, where it
+// only ever lived because backend was the first repo to go public. Four repos
+// now link this page instead of carrying copies, so it has to exist and has to
+// keep saying the two things the repos rely on it for.
+test('trademark: the policy is published here and linked from the footer', () => {
+  has('index.html', 'href="/trademark"');
+  has(
+    'trademark/index.html',
+    'must rebrand',           // the obligation every repo's CONTRIBUTING points at
+    'unregistered',           // status — no application is on file (tracker#8)
+    'legal@homeaccounting.com',
+  );
+  // The reason it moved: a policy claiming a registration we have not applied
+  // for is the one sentence in it that must never come back.
+  assert.ok(
+    !/registration is in progress/i.test(html('trademark/index.html')),
+    'the trademark page claims a registration is in progress again',
   );
 });
 
