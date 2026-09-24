@@ -115,6 +115,8 @@ test('no claim outruns the product (tracker#69)', () => {
     'security/index.html',
     'screens/index.html',
     'community/index.html',
+    'privacy/index.html',
+    'terms/index.html',
   ]) {
     const h = html(page).toLowerCase();
     for (const [phrase, why] of banned)
@@ -123,6 +125,55 @@ test('no claim outruns the product (tracker#69)', () => {
         `dist/${page} claims "${phrase}" again — ${why}. Ship it or keep it off the site.`,
       );
   }
+});
+
+// tracker#10: the hosted app was taking registrations while /privacy and
+// /terms both 404'd, and the footer's only acknowledgement was a dimmed,
+// non-clickable "Privacy / ToS (soon)".
+test('legal: privacy and terms exist and are linked from the footer', () => {
+  has('index.html', 'href="/privacy"', 'href="/terms"');
+  assert.ok(
+    !html('index.html').includes('Privacy / ToS (soon)'),
+    'the dimmed placeholder is still in the footer — the pages exist now',
+  );
+});
+
+// The two disclosures a reader of a finance app's privacy notice most needs,
+// and the two most likely to be quietly dropped in a later tidy-up: the model
+// provider that sees prompt text, and the absence of self-serve export/delete.
+test('privacy: names every processor and does not overstate the exit', () => {
+  has(
+    'privacy/index.html',
+    'Hetzner',
+    'Groq',
+    'monobank',
+    'Telegram',
+    'Google',
+    'GoatCounter',
+    'Nuremberg',
+    'Argon2id',
+    'AES-256-GCM',
+    'legal@homeaccounting.com',
+    'no export button and no delete-account button',
+  );
+});
+
+test('terms: the free-beta shape, the exit, and no invented jurisdiction', () => {
+  has(
+    'terms/index.html',
+    'AGPL-3.0',
+    'free of charge',
+    'not a bank',
+    '30 days',
+    'href="/privacy"',
+  );
+  // tracker#10 leaves the entity and its jurisdiction undecided. A governing
+  // law clause here would be fabricated, so its absence is the correct state
+  // and this asserts nobody "helpfully" adds one before the entity exists.
+  assert.ok(
+    !/governed by the laws of/i.test(html('terms/index.html')),
+    'terms name a governing law, but the legal entity is still undecided',
+  );
 });
 
 // tracker#70: the site named these documents without linking them, so a

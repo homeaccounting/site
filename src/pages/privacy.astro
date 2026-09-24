@@ -1,0 +1,207 @@
+---
+// Privacy notice for the hosted service at homeaccounting.com (tracker#10).
+//
+// Every claim here is checked against what the deployed system actually does,
+// not against what we would like it to do. In particular: the free-text prompt
+// sends your words and your own category names to a third-party model provider,
+// and there is no self-serve export or delete yet. Both are stated plainly
+// rather than softened, because the site's content rule (CONTRIBUTING.md) is
+// that a claim has to be true of the shipped product today — and a privacy
+// notice is the one page where an aspirational claim is also a false statement
+// about how personal data is handled.
+//
+// NOT REVIEWED BY COUNSEL. See tracker#10: the legal entity is undecided, which
+// is why the controller below is a person, and why there is no governing-law
+// clause here or in the terms.
+import Base from '../layouts/Base.astro';
+import { LAST_UPDATED, PROCESSORS, TERMS_PAGE_URL } from '../config';
+---
+
+<Base
+  title="Privacy"
+  description="What the hosted HomeAccounting service collects, where it is stored, who else sees it, and how to get it back or delete it."
+>
+  <section class="container max-w-3xl py-20">
+    <h1 class="text-4xl font-bold">Privacy notice</h1>
+    <p class="mt-4 text-lg text-muted-foreground">
+      This covers the hosted service at <strong>homeaccounting.com</strong>. If
+      you self-host, none of it applies to you — we never receive your data, and
+      there is nothing here for us to describe.
+    </p>
+    <p class="mt-2 text-sm text-muted-foreground">
+      Last updated {LAST_UPDATED}.
+    </p>
+
+    <div
+      class="mt-8 rounded-lg border border-border bg-muted/40 p-6 text-muted-foreground"
+    >
+      <p class="font-semibold text-foreground">The short version</p>
+      <p class="mt-2">
+        We hold what you type in and what your bank returns. It lives on one
+        server in Germany. We do not sell it, we do not advertise, and we set no
+        analytics cookies. Two things are worth reading in full below: what the
+        free-text prompt sends to a model provider, and the fact that getting
+        your data out or deleting it is still a manual request by email rather
+        than a button.
+      </p>
+    </div>
+
+    <h2 class="mt-14 text-2xl font-bold">Who is responsible</h2>
+    <p class="mt-3 text-muted-foreground">
+      The hosted service is currently run by the maintainer of HomeAccounting as
+      an individual — there is no company behind it yet. That is a real answer,
+      not a placeholder: until an entity exists, the person operating the server
+      is the data controller. Write to <a
+        class="underline"
+        href="mailto:legal@homeaccounting.com">legal@homeaccounting.com</a
+      > for anything on this page. When an entity is formed, this notice will name
+      it and we will say so on the page.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">What we hold</h2>
+    <dl class="mt-4 space-y-5">
+      <div>
+        <dt class="font-semibold">Your account</dt>
+        <dd class="mt-1 text-muted-foreground">
+          Your email address and a hash of your password (Argon2id — we never
+          store the password itself). If you sign in with Google, the account
+          identifier Google returns. If you link Telegram, your Telegram user id
+          and username.
+        </dd>
+      </div>
+      <div>
+        <dt class="font-semibold">What you record</dt>
+        <dd class="mt-1 text-muted-foreground">
+          Accounts, balances, transactions, amounts, dates, categories, labels,
+          counterparties and any comments you write. This is the financial
+          picture of your household, and it is the most sensitive thing here.
+        </dd>
+      </div>
+      <div>
+        <dt class="font-semibold">Bank connections</dt>
+        <dd class="mt-1 text-muted-foreground">
+          Only if you set one up. The access token you give us is encrypted at
+          rest (AES-256-GCM) and is never stored in plaintext. We also store the
+          transactions the bank returns, which is the point of connecting it.
+        </dd>
+      </div>
+      <div>
+        <dt class="font-semibold">Operational logs</dt>
+        <dd class="mt-1 text-muted-foreground">
+          Request logs and metrics, so we can tell whether the service is
+          working. They carry your account identifier — that is deliberate, it
+          is how a report of &ldquo;my import failed&rdquo; gets diagnosed — and
+          they are kept on the same server, not shipped to a logging vendor.
+        </dd>
+      </div>
+      <div>
+        <dt class="font-semibold">Website analytics</dt>
+        <dd class="mt-1 text-muted-foreground">
+          Page views on this marketing site, via GoatCounter. No cookies, no
+          cross-site identifier, and paths are scrubbed in your browser before
+          they are sent, so identifiers in a URL never leave your machine.
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="mt-14 text-2xl font-bold">Where it lives</h2>
+    <p class="mt-3 text-muted-foreground">
+      On a single server rented from Hetzner Online GmbH in Nuremberg, Germany.
+      Backups stay in the same place. Nothing is replicated outside the EU
+      except where a processor below is named.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">Who else sees it</h2>
+    <p class="mt-3 text-muted-foreground">
+      This is the whole list. Everything on it is either the hosting itself or
+      something you switch on by using a feature.
+    </p>
+    <div class="mt-6 space-y-6">
+      {
+        PROCESSORS.map((p) => (
+          <div class="rounded-lg border border-border p-6">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="font-semibold">{p.name}</h3>
+              <span class="text-sm text-muted-foreground">{p.where}</span>
+            </div>
+            <p class="mt-2 text-muted-foreground">{p.what}</p>
+            <p class="mt-2 text-sm text-muted-foreground">
+              <strong class="text-foreground">When:</strong> {p.when}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="mt-14 text-2xl font-bold">What we do not do</h2>
+    <ul class="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+      <li>We do not sell or rent your data, in any form, to anyone.</li>
+      <li>We do not advertise, profile you for advertising, or embed ad SDKs.</li>
+      <li>
+        We set no cookies for analytics or tracking. The app keeps your session
+        token in your browser&rsquo;s local storage because it has to; that is
+        not a tracker and it never leaves your device except as an
+        authorisation header to our own API.
+      </li>
+      <li>
+        We do not read your transactions to build anything. The only automated
+        system that sees their text is the model provider named above, and only
+        for the prompt you typed.
+      </li>
+    </ul>
+
+    <h2 class="mt-14 text-2xl font-bold">Getting your data, and leaving</h2>
+    <p class="mt-3 text-muted-foreground">
+      You can ask for a copy of everything we hold about you, ask us to correct
+      it, or ask us to delete your account and its contents.
+    </p>
+    <p class="mt-3 text-muted-foreground">
+      <strong class="text-foreground">Be aware of how this works today:</strong>
+      there is no export button and no delete-account button in the app yet. Both
+      are a manual job for the operator, done from an email to <a
+        class="underline"
+        href="mailto:legal@homeaccounting.com">legal@homeaccounting.com</a
+      >. We answer within 30 days. We would rather tell you that than imply a
+      self-service flow you will go looking for and not find — the buttons are
+      being built, and this paragraph changes when they land.
+    </p>
+    <p class="mt-3 text-muted-foreground">
+      If you are in the EU or the UK you also have the right to complain to your
+      data-protection authority. The other route out is the one that needs no
+      permission from us at all: the whole system is open source, and you can
+      run it yourself.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">How long we keep it</h2>
+    <p class="mt-3 text-muted-foreground">
+      For as long as you have an account, because it is the account. When you
+      ask us to delete it, we delete it — including the underlying event log,
+      which is where the data actually lives. Server backups roll over within 30
+      days, so a deleted account can survive in a backup until then.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">Security</h2>
+    <p class="mt-3 text-muted-foreground">
+      Passwords are hashed with Argon2id and bank tokens are encrypted at rest.
+      Traffic is HTTPS-only. The code is public, so you do not have to take any
+      of this on trust — and if you find a hole, <a
+        class="underline"
+        href="/security">report it</a
+      >.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">Changes</h2>
+    <p class="mt-3 text-muted-foreground">
+      This page is versioned in the public site repository, so every edit to it
+      has a diff and a date. If a change affects what we collect or who receives
+      it, we will say so rather than quietly updating the date.
+    </p>
+
+    <p class="mt-14 text-sm text-muted-foreground">
+      See also the <a class="underline" href={TERMS_PAGE_URL}>terms of service</a
+      >. Neither document has been reviewed by a lawyer; they describe what the
+      system does, in plain language, and will be replaced with reviewed
+      versions when the project has a legal entity.
+    </p>
+  </section>
+</Base>
