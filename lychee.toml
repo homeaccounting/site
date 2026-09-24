@@ -6,7 +6,10 @@
 #   github.com/homeaccounting/*  — the repos are public (tracker#11), so the
 #     SECURITY.md, CLA.md and README deep links the site depends on are checked
 #   www.homeaccounting.com       — the DNS cutover happened; canonical, sitemap
-#     and robots self-references are checked
+#     and robots self-references are checked. They are --remap'd to the local
+#     dist/ in the workflow rather than fetched: they describe THIS build, so
+#     checking them over the network would fail for every page a PR adds and
+#     pass for every page it deletes, until the deploy caught up.
 #   demo.homeaccounting.com      — the sandbox is live (tracker#71)
 exclude = [
   # Discord and Telegram reject HEAD from CI runners, so these cannot be

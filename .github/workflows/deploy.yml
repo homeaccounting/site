@@ -24,11 +24,20 @@ jobs:
       # token: github.com/homeaccounting/* is no longer excluded, and
       # unauthenticated GitHub requests from shared CI runners hit the 60/hour
       # rate limit, which would surface as flaky 429s rather than real errors.
+      # remap: resolve our own absolute URLs against THIS build instead of the
+      # deployed site. Canonicals and sitemap entries are self-references, so
+      # checking them over the network asks "does the last deploy match this
+      # build" — which fails for every page a PR adds, before it can possibly
+      # exist. Remapped, they still fail when a canonical points at a page the
+      # build does not contain, which is the failure worth catching (tracker#68).
       - name: Link check
         uses: lycheeverse/lychee-action@v2
         with:
           {
-            args: '--config lychee.toml --root-dir ${{ github.workspace }}/dist dist',
+            args:
+              '--config lychee.toml --root-dir ${{ github.workspace }}/dist
+              --remap "https://www\.homeaccounting\.com/(.*)
+              file://${{ github.workspace }}/dist/$1" dist',
             token: '${{ secrets.GITHUB_TOKEN }}',
           }
       - name: A11y + perf
