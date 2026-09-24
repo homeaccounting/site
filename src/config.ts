@@ -22,7 +22,11 @@ export const APP_URL = 'https://homeaccounting.com/app';
 // capture feature is Telegram-native), GitHub Discussions for anything a
 // stranger might later search for — Discord and Telegram are not indexed, so
 // durable answers have to land in Discussions or the docs.
-export const DISCORD_INVITE = 'https://discord.gg/2rE3ZQHgv';
+// Must be a never-expiring, unlimited-use invite: the previous one was a
+// temporary link that would have 404'd on 2026-10-21, and nothing on the site
+// or in any repo would have noticed (tracker#20). `test/config.test.mjs` now
+// asserts that against Discord's API rather than trusting this comment.
+export const DISCORD_INVITE = 'https://discord.gg/5kDQJfHCuG';
 
 // Broadcast channel (Ukrainian), with comments open under each post via its
 // linked discussion group — deliberately not a standalone chat group: Discord
