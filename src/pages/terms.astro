@@ -1,0 +1,139 @@
+---
+// Terms of service for the hosted tier (tracker#10).
+//
+// Deliberately short. The hosted service is free, in beta, run by one person,
+// and every user has a no-permission-needed exit because the software is AGPL
+// and self-hostable — so the honest document is a description of that
+// arrangement, not an enterprise SaaS agreement.
+//
+// NOT REVIEWED BY COUNSEL, and there is no governing-law clause: the legal
+// entity and its jurisdiction are undecided (tracker#10), and inventing one
+// would be worse than naming the gap.
+import Base from '../layouts/Base.astro';
+import { APP_URL, LAST_UPDATED, PRIVACY_PAGE_URL, SELFHOST_URL } from '../config';
+---
+
+<Base
+  title="Terms"
+  description="The terms for the free hosted HomeAccounting service: what we provide, what we ask of you, and how either of us can walk away."
+>
+  <section class="container max-w-3xl py-20">
+    <h1 class="text-4xl font-bold">Terms of service</h1>
+    <p class="mt-4 text-lg text-muted-foreground">
+      These cover the hosted service at <strong>homeaccounting.com</strong>. The
+      software itself is licensed separately, under the AGPL-3.0 — if you <a
+        class="underline"
+        href={SELFHOST_URL}>run it yourself</a
+      >, the licence is your agreement and this page is not.
+    </p>
+    <p class="mt-2 text-sm text-muted-foreground">
+      Last updated {LAST_UPDATED}.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">1. Who you are agreeing with</h2>
+    <p class="mt-3 text-muted-foreground">
+      The service is operated by the maintainer of HomeAccounting as an
+      individual. There is no company behind it yet. When one is formed, it will
+      take over this agreement and we will say so on this page.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">2. What you get</h2>
+    <p class="mt-3 text-muted-foreground">
+      A hosted instance of HomeAccounting, free of charge, in beta. There is no
+      uptime commitment, no support commitment, and no guarantee that a feature
+      that works today works tomorrow. We do not take payment, so there is
+      nothing to refund and no billing data to lose.
+    </p>
+    <p class="mt-3 text-muted-foreground">
+      HomeAccounting is a bookkeeping tool. It is not a bank, not a payment
+      service, and nothing it shows you is financial, tax or investment advice.
+      Figures it derives from your records — balances, reports, categorisations
+      — can be wrong, and you are the one who has to check them before relying
+      on them.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">3. Your account</h2>
+    <ul class="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+      <li>
+        Keep your password to yourself. Anything done with your credentials is
+        treated as done by you.
+      </li>
+      <li>
+        Give us an email address that reaches you — it is the only way we can
+        warn you about a security problem.
+      </li>
+      <li>You need to be old enough to enter a contract where you live.</li>
+      <li>
+        If you connect a bank, you are confirming you are entitled to access
+        that account. We act on your instruction; we have no relationship with
+        your bank.
+      </li>
+    </ul>
+
+    <h2 class="mt-14 text-2xl font-bold">4. What we ask you not to do</h2>
+    <p class="mt-3 text-muted-foreground">
+      Do not attack the service, try to reach other people&rsquo;s data, upload
+      malware, or use it to break the law. Do not hammer the API hard enough to
+      degrade it for everyone else — it is one small server. Security research
+      is welcome and explicitly not a breach of these terms, provided you follow
+      the <a class="underline" href="/security">disclosure policy</a>.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">5. Your data stays yours</h2>
+    <p class="mt-3 text-muted-foreground">
+      We claim no ownership of anything you put in. We use it to run the service
+      for you and for nothing else. What we hold, where it lives, and who else
+      it touches are set out in the <a class="underline" href={PRIVACY_PAGE_URL}
+        >privacy notice</a
+      >, which is part of these terms.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">6. Ending it</h2>
+    <p class="mt-3 text-muted-foreground">
+      You can stop using the service whenever you like and ask us to delete your
+      account. We can suspend or close an account that is attacking the service
+      or being used illegally; short of that, we will not close your account
+      without telling you why.
+    </p>
+    <p class="mt-3 text-muted-foreground">
+      We may also discontinue the hosted service. If we do, we will give at
+      least 30 days&rsquo; notice and help you get your data out. This is the
+      part the open-source licence is load-bearing for: the same stack that runs
+      homeaccounting.com is published, so shutting down the hosted tier cannot
+      strand you — you can stand it up yourself.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">7. No warranty, limited liability</h2>
+    <p class="mt-3 text-muted-foreground">
+      The service is provided as-is, without warranties of any kind, to the
+      extent the law where you live allows. We are not liable for indirect or
+      consequential loss, or for loss of data or profit. Nothing here limits
+      liability that cannot legally be limited — including for death, personal
+      injury, fraud, or your rights as a consumer, which these terms do not take
+      away.
+    </p>
+    <p class="mt-3 text-muted-foreground">
+      Keep your own backups of anything you cannot afford to lose. That is
+      sensible advice for any free beta service, this one included.
+    </p>
+
+    <h2 class="mt-14 text-2xl font-bold">8. Changes</h2>
+    <p class="mt-3 text-muted-foreground">
+      This page lives in the public site repository, so every change to it has a
+      diff and a date. For a change that materially affects you we will give
+      notice before it takes effect; continuing to use the service afterwards is
+      how you accept it.
+    </p>
+
+    <p class="mt-14 text-sm text-muted-foreground">
+      Neither these terms nor the <a class="underline" href={PRIVACY_PAGE_URL}
+        >privacy notice</a
+      > has been reviewed by a lawyer, and neither names a governing law, because
+      the project has no legal entity yet. They describe the arrangement honestly
+      in the meantime. Questions: <a
+        class="underline"
+        href="mailto:legal@homeaccounting.com">legal@homeaccounting.com</a
+      >. Ready to start? <a class="underline" href={APP_URL}>Sign up</a>.
+    </p>
+  </section>
+</Base>

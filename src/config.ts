@@ -84,6 +84,64 @@ export const SECURITY_PAGE_URL = '/security';
 // Screenshot/flow gallery page — one source of truth for nav/footer/links.
 export const SCREENS_PAGE_URL = '/screens';
 
+// Hosted-tier legal pages (tracker#10). Deliberately not in NAV_LINKS: they
+// belong in the footer and next to the signup consent, which is where someone
+// actually looks for them.
+export const PRIVACY_PAGE_URL = '/privacy';
+export const TERMS_PAGE_URL = '/terms';
+
+// Shown on both legal pages. One constant so the two can never disagree about
+// when they were last revised — bump it in the same commit as the wording.
+export const LAST_UPDATED = '24 September 2026';
+
+// Everyone outside our own server who can see hosted-tier data, and why. This
+// is the complete list the privacy notice renders; adding an integration means
+// adding a row here in the same change, which is the point of keeping it in
+// config rather than in the page's prose.
+export const PROCESSORS: {
+  name: string;
+  where: string;
+  what: string;
+  when: string;
+}[] = [
+  {
+    name: 'Hetzner Online GmbH',
+    where: 'Nuremberg, Germany',
+    what: 'Rents us the server everything runs on, and holds the backups. They do not access the data; they host the disk it sits on.',
+    when: 'Always — this is the hosting.',
+  },
+  {
+    name: 'Groq, Inc.',
+    where: 'United States',
+    what: 'Runs the language model behind free-text entry. It receives the sentence you typed and the names of your own accounts, categories and labels, so it can map "coffee, 80 hryvnia, mono" onto the ones you actually use. It does not receive your transaction history, your balances, your email or anything about your bank connection.',
+    when: 'Only when you use the free-text prompt or send a message to the Telegram bot. Never for typed-in or bank-imported transactions.',
+  },
+  {
+    name: 'monobank / PrivatBank',
+    where: 'Ukraine',
+    what: 'Your bank, returning your own transactions to us over its API with the token you issued.',
+    when: 'Only if you connect that bank yourself.',
+  },
+  {
+    name: 'Telegram',
+    where: 'operated by Telegram FZ-LLC',
+    what: 'Carries the messages between you and our bot — so anything you send it passes through Telegram, as any Telegram message does.',
+    when: 'Only if you link Telegram.',
+  },
+  {
+    name: 'Google',
+    where: 'United States',
+    what: 'Confirms who you are when you choose "sign in with Google", and tells us the account identifier and email for that.',
+    when: 'Only if you sign in with Google.',
+  },
+  {
+    name: 'GoatCounter',
+    where: 'European Union',
+    what: 'Counts page views on this marketing site. No cookies, no cross-site identifier, and paths are scrubbed of identifiers in your browser before anything is sent.',
+    when: 'On this marketing site only — not inside the app.',
+  },
+];
+
 // Until the demo is live, the closest honest thing we have is the screens
 // gallery (real captures + flow clips), so the third CTA keeps pointing
 // somewhere real rather than disappearing. On /screens itself the caller drops
@@ -140,8 +198,9 @@ export const FOOTER: {
       { label: 'Community — Discord & Telegram', href: COMMUNITY_URL },
       { label: 'Code of Conduct', href: CONDUCT_URL },
       { label: 'AGPL-3.0 licence', href: LICENSE_URL },
+      { label: 'Privacy', href: PRIVACY_PAGE_URL },
+      { label: 'Terms', href: TERMS_PAGE_URL },
     ],
-    // Privacy/ToS land with the hosted tier (tracker#10).
-    notes: [{ label: 'Privacy / ToS (soon)', muted: true }],
+    notes: [],
   },
 ];
