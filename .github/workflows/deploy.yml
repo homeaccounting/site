@@ -30,16 +30,21 @@ jobs:
       # build" — which fails for every page a PR adds, before it can possibly
       # exist. Remapped, they still fail when a canonical points at a page the
       # build does not contain, which is the failure worth catching (tracker#68).
+      # remap: resolve our own absolute URLs against THIS build instead of the
+      # deployed site. Canonicals and sitemap entries are self-references, so
+      # checking them over the network asks "does the last deploy match this
+      # build" — which fails for every page a PR adds, before it can possibly
+      # exist. Remapped, they still fail when a canonical points at a page the
+      # build does not contain, which is the failure worth catching (tracker#68).
+      #
+      # The single quotes around the remap pair are load-bearing: the action
+      # eval's these args, so without them "$1" expands to an unbound
+      # positional and the pattern/replacement split into two arguments.
       - name: Link check
         uses: lycheeverse/lychee-action@v2
         with:
-          {
-            args:
-              '--config lychee.toml --root-dir ${{ github.workspace }}/dist
-              --remap "https://www\.homeaccounting\.com/(.*)
-              file://${{ github.workspace }}/dist/$1" dist',
-            token: '${{ secrets.GITHUB_TOKEN }}',
-          }
+          args: "--config lychee.toml --root-dir ${{ github.workspace }}/dist --remap 'https://www\\.homeaccounting\\.com/(.*) file://${{ github.workspace }}/dist/$1' dist"
+          token: "${{ secrets.GITHUB_TOKEN }}"
       - name: A11y + perf
         run: npx --yes @lhci/cli@0.14.x autorun --collect.staticDistDir=./dist --assert.preset=lighthouse:recommended || true
       - uses: actions/upload-pages-artifact@v3
