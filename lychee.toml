@@ -13,9 +13,10 @@
 #   demo.homeaccounting.com      — the sandbox is live (tracker#71)
 exclude = [
   # Discord and Telegram reject HEAD from CI runners, so these cannot be
-  # verified here. NOTE: that also makes invite *expiry* invisible to CI — the
-  # Discord invite must be a never-expiring one, and is checked by hand
-  # (tracker#20).
+  # verified here. Invite *expiry* would therefore be invisible to CI, which is
+  # how a temporary Discord invite reached the live site — so that one case is
+  # covered instead by test/config.test.mjs, which asks Discord's API whether
+  # the invite expires (tracker#20).
   "https://discord\\.gg/.*",
   "https://t\\.me/.*",
 ]
