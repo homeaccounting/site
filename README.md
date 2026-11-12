@@ -66,4 +66,4 @@ Never report a vulnerability in a public issue — email
 
 [AGPL-3.0](LICENSE), like the rest of HomeAccounting. The name, logo, and
 branded screenshots are excluded from that licence — see [NOTICE](NOTICE) and
-the [trademark policy](https://github.com/homeaccounting/backend/blob/master/TRADEMARK.md).
+the [trademark policy](https://www.homeaccounting.com/trademark).
